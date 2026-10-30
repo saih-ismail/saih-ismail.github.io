@@ -1,39 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ismail SAIH — Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.92);
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --accent: #2563eb;
-            --accent-soft: rgba(37, 99, 235, 0.12);
-            --pill-dark: #0f172a;
-            --pill-dark-text: #ffffff;
-            --glow: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.16), rgba(147, 51, 234, 0.04) 45%, transparent 70%);
-            --shadow: 0 12px 32px -12px rgba(15, 23, 42, 0.06);
-        }
-
-        [data-theme="dark"] {
-            --bg: #090d16;
-            --card-bg: rgba(17, 24, 39, 0.88);
+            --bg: #030712;
+            --surface: #0f172a;
+            --surface-border: #1e293b;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --border: #1e293b;
-            --accent: #3b82f6;
-            --accent-soft: rgba(59, 130, 246, 0.2);
-            --pill-dark: #f8fafc;
-            --pill-dark-text: #0f172a;
-            --glow: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.24), rgba(147, 51, 234, 0.08) 45%, transparent 70%);
-            --shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.55);
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --pill-bg: #1e293b;
+            --pill-text: #f8fafc;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --surface-border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent: #0284c7;
+            --accent-glow: rgba(2, 132, 199, 0.1);
+            --pill-bg: #f1f5f9;
+            --pill-text: #0f172a;
         }
 
         * {
@@ -47,229 +44,220 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
             background-color: var(--bg);
-            background-image: var(--glow);
-            background-attachment: fixed;
             color: var(--text-main);
             line-height: 1.6;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Header */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: var(--card-bg);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--border);
-            padding: 0.85rem 2rem;
+        /* Top Bar Controls */
+        .top-bar {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            gap: 0.6rem;
+            z-index: 1000;
         }
 
-        .nav-container {
-            max-width: 1180px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.65rem;
-            font-weight: 700;
-            font-size: 1.05rem;
-            text-decoration: none;
+        .control-btn {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
             color: var(--text-main);
-            letter-spacing: -0.01em;
+            padding: 0.5rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: var(--transition);
         }
 
-        .brand-dot {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 0 4px var(--accent-soft);
+        .control-btn:hover {
+            border-color: var(--accent);
+            transform: translateY(-1px);
         }
 
-        .nav-links {
+        /* Main Asymmetric Layout */
+        .layout-wrapper {
+            max-width: 1350px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        @media (max-width: 1024px) {
+            .layout-wrapper {
+                grid-template-columns: 1fr;
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Sticky Left Sidebar Profile */
+        .sidebar {
+            position: sticky;
+            top: 4rem;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
             display: flex;
+            flex-direction: column;
             gap: 1.8rem;
-            list-style: none;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.2);
         }
 
-        .nav-links a {
+        .avatar-badge {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            background: var(--accent-glow);
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.2rem;
+        }
+
+        .sidebar-header p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .sidebar-bio {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+        }
+
+        .sidebar-bio strong {
+            color: var(--text-main);
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            border-top: 1px solid var(--surface-border);
+            border-bottom: 1px solid var(--surface-border);
+            padding: 1rem 0;
+        }
+
+        .sidebar-nav a {
             text-decoration: none;
             color: var(--text-muted);
-            font-size: 0.92rem;
-            font-weight: 500;
-            padding: 0.4rem 0;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            transition: var(--transition);
         }
 
-        .nav-links a:hover, .nav-links a.active {
+        .sidebar-nav a:hover {
             color: var(--text-main);
-            border-bottom-color: var(--accent);
+            background: var(--accent-glow);
         }
 
-        .nav-actions {
+        .sidebar-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .action-btn.primary {
+            background: var(--text-main);
+            color: var(--bg);
+        }
+
+        .action-btn.primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .action-btn.secondary {
+            background: var(--pill-bg);
+            color: var(--text-main);
+            border: 1px solid var(--surface-border);
+        }
+
+        .action-btn.secondary:hover {
+            border-color: var(--accent);
+        }
+
+        /* Right Content Area */
+        .content-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .feed-section {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
+        }
+
+        .section-heading {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.3rem;
             display: flex;
             align-items: center;
             gap: 0.6rem;
         }
 
-        /* Buttons */
-        .btn-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.55rem 1.2rem;
-            border-radius: 999px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.15s ease, box-shadow 0.2s ease;
-            cursor: pointer;
-            border: 1px solid var(--border);
-            background: var(--card-bg);
-            color: var(--text-main);
+        .section-heading span {
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
         }
 
-        .btn-pill:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-        }
-
-        .btn-pill.dark {
-            background: var(--pill-dark);
-            color: var(--pill-dark-text);
-            border-color: var(--pill-dark);
-        }
-
-        .icon-btn {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: var(--card-bg);
-            color: var(--text-main);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.82rem;
-            transition: all 0.2s;
-        }
-
-        .icon-btn:hover {
-            border-color: var(--accent);
-        }
-
-        /* Main Layout */
-        main {
-            max-width: 1180px;
-            margin: 2.5rem auto;
-            padding: 0 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        /* Hero Grid */
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.05fr 1fr;
-            gap: 1.75rem;
-            align-items: stretch;
-        }
-
-        @media (max-width: 900px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
-            .nav-links {
-                display: none;
-            }
-        }
-
-        .bento-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            padding: 2.25rem;
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .tag-pill {
-            display: inline-block;
-            align-self: flex-start;
-            padding: 0.35rem 0.9rem;
-            border-radius: 999px;
-            border: 1px solid var(--border);
-            font-size: 0.78rem;
-            font-weight: 600;
+        .section-desc {
+            font-size: 0.9rem;
             color: var(--text-muted);
-            letter-spacing: 0.3px;
-            margin-bottom: 1.2rem;
+            margin-bottom: 2rem;
         }
 
-        .hero-title {
-            font-size: clamp(2.2rem, 4vw, 3.1rem);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.15;
-            margin-bottom: 1.1rem;
-        }
-
-        .hero-bio {
-            font-size: 1.02rem;
-            color: var(--text-muted);
-            margin-bottom: 1.8rem;
-        }
-
-        .hero-bio strong {
-            color: var(--text-main);
-            font-weight: 600;
-        }
-
-        .cta-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: auto;
-        }
-
-        /* Video Box */
-        .video-header h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        .video-header p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            margin-bottom: 1.1rem;
-        }
-
-        .video-container {
+        /* Video Feature Box */
+        .video-box {
             width: 100%;
             border-radius: 14px;
             overflow: hidden;
             background: #000;
-            border: 1px solid var(--border);
+            border: 1px solid var(--surface-border);
             aspect-ratio: 16 / 9;
+            margin-top: 1rem;
         }
 
         video {
@@ -279,286 +267,221 @@
             display: block;
         }
 
-        /* Section Titles */
-        .section-title {
-            font-size: 1.55rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.35rem;
-        }
-
-        .section-subtitle {
-            font-size: 0.92rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
+        /* Modern Timeline */
+        .timeline-stream {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-        }
-
-        .timeline::before {
-            content: "";
-            position: absolute;
-            left: 7px;
-            top: 12px;
-            bottom: 12px;
-            width: 2px;
-            background: var(--accent);
-            opacity: 0.4;
-        }
-
-        .timeline-item {
-            position: relative;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.1rem 1.4rem;
-            background: var(--bg);
-            transition: border-color 0.2s;
-        }
-
-        .timeline-item:hover {
-            border-color: var(--accent);
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: -2rem;
-            top: 1.35rem;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 0 5px var(--accent-soft);
-        }
-
-        .timeline-item h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 0.2rem;
-        }
-
-        .timeline-item span {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* 3-Column Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.25rem;
         }
 
-        .info-card {
-            border: 1px solid var(--border);
+        .timeline-card {
+            background: var(--bg);
+            border: 1px solid var(--surface-border);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .timeline-card:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .timeline-card h3 {
+            font-size: 1.02rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-card span {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Grid Cards for Perspectives & Mobility */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .mini-card {
+            background: var(--bg);
+            border: 1px solid var(--surface-border);
             border-radius: 16px;
             padding: 1.5rem;
-            background: var(--bg);
             display: flex;
             flex-direction: column;
-            gap: 0.65rem;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            gap: 0.75rem;
+            transition: var(--transition);
         }
 
-        .info-card:hover {
-            transform: translateY(-2px);
+        .mini-card:hover {
             border-color: var(--accent);
+            transform: translateY(-2px);
         }
 
-        .card-badge {
+        .card-tag {
             align-self: flex-start;
-            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
             font-weight: 700;
             text-transform: uppercase;
-            padding: 0.25rem 0.65rem;
+            padding: 0.2rem 0.6rem;
             border-radius: 6px;
-            background: var(--accent-soft);
+            background: var(--accent-glow);
             color: var(--accent);
         }
 
-        .info-card h3 {
-            font-size: 1.1rem;
+        .mini-card h3 {
+            font-size: 1.05rem;
             font-weight: 700;
         }
 
-        .info-card p {
-            font-size: 0.9rem;
+        .mini-card p {
+            font-size: 0.88rem;
             color: var(--text-muted);
-        }
-
-        .info-card p strong {
-            color: var(--text-main);
         }
 
         footer {
             text-align: center;
-            padding: 2.5rem 1rem;
+            padding: 2rem;
             color: var(--text-muted);
             font-size: 0.85rem;
-            border-top: 1px solid var(--border);
-            margin-top: 2rem;
+            grid-column: 1 / -1;
+            font-family: 'JetBrains Mono', monospace;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="nav-container">
-            <a href="#welcome" class="brand">
-                <span class="brand-dot"></span>
-                <span>Ismail SAIH</span>
-            </a>
+    <!-- Floating Top Bar Controls -->
+    <div class="top-bar">
+        <button class="control-btn" id="langToggle">FR</button>
+        <button class="control-btn" id="themeToggle">Mode</button>
+    </div>
 
-            <ul class="nav-links">
-                <li><a href="#welcome" class="active" data-en="Welcome" data-fr="Accueil">Welcome</a></li>
-                <li><a href="#pathway" data-en="Education" data-fr="Formation">Education</a></li>
-                <li><a href="#inspiration" data-en="Career Perspectives" data-fr="Perspectives">Career Perspectives</a></li>
-                <li><a href="#mobility" data-en="Mobility" data-fr="Mobilité">Mobility</a></li>
-            </ul>
+    <div class="layout-wrapper">
 
-            <div class="nav-actions">
-                <a href="cv-en.pdf" target="_blank" class="btn-pill dark" data-en="Resume (EN)" data-fr="CV (EN)">Resume (EN)</a>
-                <button class="icon-btn" id="themeToggle" title="Toggle Dark/Light Mode">◐</button>
-                <button class="icon-btn" id="langToggle" title="Switch Language">EN</button>
+        <!-- Left Sticky Sidebar -->
+        <aside class="sidebar">
+            <div class="avatar-badge">IS</div>
+            <div class="sidebar-header">
+                <h1>Ismail SAIH</h1>
+                <p data-en="Engineering Student @ ENSEEIHT" data-fr="Étudiant Ingénieur @ ENSEEIHT">Engineering Student @ ENSEEIHT</p>
             </div>
-        </div>
-    </header>
+            <p class="sidebar-bio" data-en="First-year student in <strong>Sciences du Numérique</strong>, following an intensive <strong>CPGE MP</strong> track in Morocco." data-fr="Étudiant de première année en <strong>Sciences du Numérique</strong>, après une classe préparatoire <strong>CPGE MP</strong> au Maroc.">
+                First-year student in <strong>Sciences du Numérique</strong>, following an intensive <strong>CPGE MP</strong> track in Morocco.
+            </p>
 
-    <main>
+            <nav class="sidebar-nav">
+                <a href="#pitch" data-en="01 / Elevator Pitch" data-fr="01 / Pitch Vidéo">01 / Elevator Pitch</a>
+                <a href="#pathway" data-en="02 / Education" data-fr="02 / Formation">02 / Education</a>
+                <a href="#perspectives" data-en="03 / Career Perspectives" data-fr="03 / Perspectives">03 / Career Perspectives</a>
+                <a href="#mobility" data-en="04 / International Mobility" data-fr="04 / Mobilité">04 / International Mobility</a>
+            </nav>
 
-        <!-- HERO: Welcome + Video -->
-        <section id="welcome" class="hero-grid">
-            <div class="bento-card">
-                <div>
-                    <span class="tag-pill">ENSEEIHT · SN</span>
-                    <h1 class="hero-title">Ismail SAIH</h1>
-                    <p class="hero-bio" data-en="First-year engineering student at <strong>ENSEEIHT</strong> (<strong>SN — Digital Sciences</strong>), after two years of <strong>CPGE MP</strong> (Mathematics & Physics) in Morocco. I am interested in <strong>software engineering, algorithm design, scientific computing</strong>, and <strong>applied mathematics</strong>." data-fr="Étudiant ingénieur de première année à l'<strong>ENSEEIHT</strong> (<strong>SN — Sciences du Numérique</strong>), après deux années de <strong>CPGE MP</strong> (Mathématiques et Physique) au Maroc. Je m'intéresse au <strong>génie logiciel, à l'algorithmique, au calcul scientifique</strong> et aux <strong>mathématiques appliquées</strong>.">
-                        First-year engineering student at <strong>ENSEEIHT</strong> (<strong>SN — Digital Sciences</strong>), after two years of <strong>CPGE MP</strong> (Mathematics & Physics) in Morocco. I am interested in <strong>software engineering, algorithm design, scientific computing</strong>, and <strong>applied mathematics</strong>.
-                    </p>
-                </div>
-
-                <div class="cta-row">
-                    <a href="cv-fr.pdf" target="_blank" class="btn-pill">
-                        <span>📄</span> <span>CV (FR)</span>
-                    </a>
-                    <a href="cv-en.pdf" target="_blank" class="btn-pill dark">
-                        <span>📄</span> <span>Resume (EN)</span>
-                    </a>
-                </div>
+            <div class="sidebar-actions">
+                <a href="cv-en.pdf" target="_blank" class="action-btn primary" data-en="Download Resume (EN)" data-fr="Télécharger CV (EN)">Download Resume (EN)</a>
+                <a href="cv-fr.pdf" target="_blank" class="action-btn secondary" data-en="Télécharger CV (FR)" data-fr="Télécharger CV (FR)">Télécharger CV (FR)</a>
             </div>
+        </aside>
 
-            <div class="bento-card">
-                <div class="video-header">
-                    <h2 data-en="Elevator pitch" data-fr="Présentation vidéo">Elevator pitch</h2>
-                    <p data-en="Watch my pitch below:" data-fr="Découvrez ma présentation ci-dessous :">Watch my pitch below:</p>
-                </div>
-                <div class="video-container">
+        <!-- Right Content Feed -->
+        <div class="content-feed">
+
+            <!-- SECTION 01: PITCH -->
+            <section id="pitch" class="feed-section">
+                <h2 class="section-heading"><span data-en="01." data-fr="01.">01.</span> <span data-en="Elevator pitch" data-fr="Pitch vidéo">Elevator pitch</span></h2>
+                <p class="section-desc" data-en="Watch my video presentation below:" data-fr="Découvrez ma présentation vidéo ci-dessous :">Watch my video presentation below:</p>
+                <div class="video-box">
                     <video controls preload="metadata">
                         <source src="pitch.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- ACADEMIC PATHWAY -->
-        <section id="pathway" class="bento-card">
-            <h2 class="section-title" data-en="Academic pathway" data-fr="Parcours académique">Academic pathway</h2>
-            <p class="section-subtitle" data-en="Education & academic background" data-fr="Formation et cursus">Education & academic background</p>
+            <!-- SECTION 02: EDUCATION -->
+            <section id="pathway" class="feed-section">
+                <h2 class="section-heading"><span data-en="02." data-fr="02.">02.</span> <span data-en="Academic pathway" data-fr="Parcours académique">Academic pathway</span></h2>
+                <p class="section-desc" data-en="Educational background and foundational milestones" data-fr="Mon parcours de formation et cursus académique">Educational background and foundational milestones</p>
 
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <h3 data-en="ENSEEIHT — SN (Sciences du Numérique)" data-fr="ENSEEIHT — SN (Sciences du Numérique)">ENSEEIHT — SN (Sciences du Numérique)</h3>
-                    <span data-en="2026–2029 · Year 1 (current) · Toulouse, France" data-fr="2026–2029 · 1re année (en cours) · Toulouse, France">2026–2029 · Year 1 (current) · Toulouse, France</span>
+                <div class="timeline-stream">
+                    <div class="timeline-card">
+                        <h3 data-en="ENSEEIHT — Sciences du Numérique" data-fr="ENSEEIHT — Sciences du Numérique">ENSEEIHT — Sciences du Numérique</h3>
+                        <span data-en="2026–2029 · First Year · Toulouse, France" data-fr="2026–2029 · 1re année · Toulouse, France">2026–2029 · First Year · Toulouse, France</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3 data-en="CPGE MP (Mathematics & Physics)" data-fr="CPGE MP (Mathématiques et Physique)">CPGE MP (Mathematics & Physics)</h3>
+                        <span data-en="2024–2026 · Intensive Preparatory Classes · Morocco" data-fr="2024–2026 · Classes Préparatoires · Maroc">2024–2026 · Intensive Preparatory Classes · Morocco</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3 data-en="Baccalauréat Sciences Mathématiques" data-fr="Baccalauréat Sciences Mathématiques">Baccalauréat Sciences Mathématiques</h3>
+                        <span data-en="2024 · Mention Bien · Morocco" data-fr="2024 · Mention Bien · Maroc">2024 · Mention Bien · Morocco</span>
+                    </div>
                 </div>
+            </section>
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <h3 data-en="CPGE MP · Morocco" data-fr="CPGE MP · Maroc">CPGE MP · Morocco</h3>
-                    <span data-en="2024–2026 · Intensive preparatory classes in Mathematics & Physics" data-fr="2024–2026 · Classes préparatoires aux grandes écoles, filière Mathématiques et Physique">2024–2026 · Intensive preparatory classes in Mathematics & Physics</span>
+            <!-- SECTION 03: CAREER PERSPECTIVES -->
+            <section id="perspectives" class="feed-section">
+                <h2 class="section-heading"><span data-en="03." data-fr="03.">03.</span> <span data-en="Career perspectives" data-fr="Perspectives de carrière">Career perspectives</span></h2>
+                <p class="section-desc" data-en="Professional profiles and engineering paths inspiring my trajectory" data-fr="Profils professionnels et orientations inspirant mon projet">Professional profiles and engineering paths inspiring my trajectory</p>
+
+                <div class="grid-cards">
+                    <div class="mini-card">
+                        <span class="card-tag">Profile 01</span>
+                        <h3 data-en="Software & Systems Engineer" data-fr="Ingénieur Logiciel & Systèmes">Software & Systems Engineer</h3>
+                        <p data-en="Designing scalable architectures and high-performance backend systems." data-fr="Conception d'architectures logicielles et de systèmes hautes performances.">Designing scalable architectures and high-performance backend systems.</p>
+                    </div>
+                    <div class="mini-card">
+                        <span class="card-tag">Profile 02</span>
+                        <h3 data-en="AI & Data Science Engineer" data-fr="Ingénieur IA & Data Science">AI & Data Science Engineer</h3>
+                        <p data-en="Applying statistical learning and numerical optimization to complex problems." data-fr="Application de l'apprentissage statistique et de l'optimisation numérique.">Applying statistical learning and numerical optimization to complex problems.</p>
+                    </div>
+                    <div class="mini-card">
+                        <span class="card-tag">Profile 03</span>
+                        <h3 data-en="Quantitative & R&D Engineer" data-fr="Ingénieur R&D & Quantitatif">Quantitative & R&D Engineer</h3>
+                        <p data-en="Low-latency algorithms and scientific computing applications." data-fr="Algorithmique bas niveau et calcul scientifique appliqué.">Low-latency algorithms and scientific computing applications.</p>
+                    </div>
                 </div>
+            </section>
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <h3 data-en="Baccalauréat Sciences Mathématiques · Morocco" data-fr="Baccalauréat Sciences Mathématiques · Maroc">Baccalauréat Sciences Mathématiques · Morocco</h3>
-                    <span data-en="2024 · Honors (Mention Bien)" data-fr="2024 · Mention Bien">2024 · Honors (Mention Bien)</span>
+            <!-- SECTION 04: MOBILITY -->
+            <section id="mobility" class="feed-section">
+                <h2 class="section-heading"><span data-en="04." data-fr="04.">04.</span> <span data-en="International mobility" data-fr="Mobilité internationale">International mobility</span></h2>
+                <p class="section-desc" data-en="Target academic exchanges and international opportunities" data-fr="Projets de mobilité académique et opportunités internationales">Target academic exchanges and international opportunities</p>
+
+                <div class="grid-cards">
+                    <div class="mini-card">
+                        <span class="card-tag">Option 01</span>
+                        <h3 data-en="Academic Exchange / Double Degree" data-fr="Échange Académique / Double Diplôme">Academic Exchange / Double Degree</h3>
+                        <p data-en="Targeting North American universities specializing in distributed software systems." data-fr="Cible les universités nord-américaines spécialisées en systèmes distribués.">Targeting North American universities specializing in distributed software systems.</p>
+                    </div>
+                    <div class="mini-card">
+                        <span class="card-tag">Option 02</span>
+                        <h3 data-en="Erasmus+ Semester Exchange" data-fr="Échange Semestriel Erasmus+">Erasmus+ Semester Exchange</h3>
+                        <p data-en="Focusing on European tech hubs for artificial intelligence and advanced computing." data-fr="Immersion dans les pôles technologiques européens en IA et calcul avancé.">Focusing on European tech hubs for artificial intelligence and advanced computing.</p>
+                    </div>
+                    <div class="mini-card">
+                        <span class="card-tag">Option 03</span>
+                        <h3 data-en="International R&D Internship" data-fr="Stage R&D International">International R&D Internship</h3>
+                        <p data-en="Gaining industrial research exposure in high-performance computing labs." data-fr="Acquisition d'une expérience de recherche industrielle en calcul intensif.">Gaining industrial research exposure in high-performance computing labs.</p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- CAREER PERSPECTIVES / INSPIRING PROFILES -->
-        <section id="inspiration" class="bento-card">
-            <h2 class="section-title" data-en="Career perspectives" data-fr="Perspectives de carrière">Career perspectives</h2>
-            <p class="section-subtitle" data-en="Professional profiles and industry paths that inspire my career direction" data-fr="Parcours d'ingénieurs et secteurs qui orientent mon projet professionnel">Professional profiles and industry paths that inspire my career direction</p>
+            <footer>
+                <p>© 2026 Ismail SAIH · Hosted on GitHub Pages</p>
+            </footer>
+        </div>
 
-            <div class="cards-grid">
-                <div class="info-card">
-                    <span class="card-badge" data-en="Profile 01" data-fr="Profil 01">Profile 01</span>
-                    <h3>[Name / Role — e.g., Software & Systems Engineer]</h3>
-                    <p><strong>Company:</strong> [Company Name]</p>
-                    <p><strong>Focus:</strong> Designing scalable software systems, backend architectures, and high-performance applications.</p>
-                </div>
-
-                <div class="info-card">
-                    <span class="card-badge" data-en="Profile 02" data-fr="Profil 02">Profile 02</span>
-                    <h3>[Name / Role — e.g., AI & Data Science Engineer]</h3>
-                    <p><strong>Company:</strong> [Company Name]</p>
-                    <p><strong>Focus:</strong> Applying statistical learning, mathematical optimization, and Python-based modeling to complex datasets.</p>
-                </div>
-
-                <div class="info-card">
-                    <span class="card-badge" data-en="Profile 03" data-fr="Profil 03">Profile 03</span>
-                    <h3>[Name / Role — e.g., Quantitative / R&D Engineer]</h3>
-                    <p><strong>Company:</strong> [Company Name]</p>
-                    <p><strong>Focus:</strong> Low-latency algorithms and scientific computing at the intersection of applied mathematics and computer science.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- INTERNATIONAL MOBILITY -->
-        <section id="mobility" class="bento-card">
-            <h2 class="section-title" data-en="International mobility" data-fr="Mobilité internationale">International mobility</h2>
-            <p class="section-subtitle" data-en="Target academic exchanges and international opportunities" data-fr="Projets d'échanges académiques et opportunités à l'international">Target academic exchanges and international opportunities</p>
-
-            <div class="cards-grid">
-                <div class="info-card">
-                    <span class="card-badge" data-en="Option 01" data-fr="Option 01">Option 01</span>
-                    <h3>[University / Country #1]</h3>
-                    <p><strong>Program:</strong> Academic Exchange / Double Degree</p>
-                    <p><strong>Focus:</strong> Software Engineering & Distributed Systems.</p>
-                </div>
-
-                <div class="info-card">
-                    <span class="card-badge" data-en="Option 02" data-fr="Option 02">Option 02</span>
-                    <h3>[University / Country #2]</h3>
-                    <p><strong>Program:</strong> Erasmus+ Semester Exchange</p>
-                    <p><strong>Focus:</strong> Artificial Intelligence, Machine Learning & Data Science.</p>
-                </div>
-
-                <div class="info-card">
-                    <span class="card-badge" data-en="Option 03" data-fr="Option 03">Option 03</span>
-                    <h3>[Destination / Country #3]</h3>
-                    <p><strong>Program:</strong> International R&D Internship / Exchange</p>
-                    <p><strong>Focus:</strong> High-Performance Computing & Applied Mathematics.</p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>© 2026 Ismail SAIH</p>
-    </footer>
+    </div>
 
     <script>
-        // Dark / Light Mode Toggle
+        // Dark / Light Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
         const htmlEl = document.documentElement;
 
@@ -566,6 +489,7 @@
             const current = htmlEl.getAttribute('data-theme');
             const next = current === 'dark' ? 'light' : 'dark';
             htmlEl.setAttribute('data-theme', next);
+            themeToggle.textContent = next === 'dark' ? 'Mode' : 'Mode';
         });
 
         // EN / FR Language Switcher
@@ -574,7 +498,7 @@
 
         langToggle.addEventListener('click', () => {
             currentLang = currentLang === 'en' ? 'fr' : 'en';
-            langToggle.textContent = currentLang.toUpperCase();
+            langToggle.textContent = currentLang === 'en' ? 'FR' : 'EN';
             document.querySelectorAll('[data-en]').forEach(el => {
                 el.innerHTML = el.getAttribute(`data-${currentLang}`);
             });
