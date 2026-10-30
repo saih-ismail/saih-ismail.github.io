@@ -1,19 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engineering e-Portfolio</title>
+    <title>e-Portfolio | Career Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0f172a;
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
             --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #334155;
-            --text-light: #64748b;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
             --border: #e2e8f0;
+            --accent: #2563eb;
+            --accent-soft: rgba(37, 99, 235, 0.12);
+            --pill-dark: #111827;
+            --pill-dark-text: #ffffff;
+            --glow: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.18), rgba(147, 51, 234, 0.05) 45%, transparent 70%);
+            --shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06);
+        }
+
+        [data-theme="dark"] {
+            --bg: #090d16;
+            --card-bg: rgba(17, 24, 39, 0.85);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #1e293b;
+            --accent: #3b82f6;
+            --accent-soft: rgba(59, 130, 246, 0.2);
+            --pill-dark: #f8fafc;
+            --pill-dark-text: #0f172a;
+            --glow: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.25), rgba(147, 51, 234, 0.08) 45%, transparent 70%);
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
         }
 
         * {
@@ -22,445 +42,519 @@
             padding: 0;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* Header & Navigation */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            background-image: var(--glow);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Top Navigation Bar */
         header {
-            background-color: var(--primary);
-            color: white;
-            padding: 2rem 1rem 0 1rem;
-            text-align: center;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 0.3rem;
-            letter-spacing: -0.5px;
-        }
-
-        header p {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .tab-btn {
-            background: transparent;
-            color: #cbd5e1;
-            border: none;
-            padding: 0.8rem 1.2rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.2s ease;
-        }
-
-        .tab-btn:hover {
-            color: white;
-            background: rgba(255,255,255,0.05);
-        }
-
-        .tab-btn.active {
-            color: white;
-            border-bottom-color: #38bdf8;
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* Main Container */
-        main {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1.2rem;
-            min-height: 70vh;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Cards & Sections */
-        .card {
             background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.8rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.85rem 2rem;
         }
 
-        h2 {
-            color: var(--primary);
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
+        .nav-container {
+            max-width: 1180px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            border-bottom: 2px solid var(--bg);
-            padding-bottom: 0.5rem;
-        }
-
-        h3 {
-            color: var(--primary);
-            font-size: 1.15rem;
-            margin: 1rem 0 0.5rem 0;
-        }
-
-        /* Hero / Welcome Profile */
-        .profile-container {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
+            justify-content: space-between;
             flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .profile-pic {
-            width: 140px;
-            height: 140px;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .brand-dot {
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--accent);
-            background-color: #e2e8f0;
+            background: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-soft);
         }
 
-        .profile-text {
-            flex: 1;
-            min-width: 260px;
-        }
-
-        /* Buttons & Links */
-        .btn-group {
+        .nav-links {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 1rem;
+            gap: 1.8rem;
+            list-style: none;
         }
 
-        .btn {
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            font-weight: 500;
+            padding: 0.4rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+            border-bottom-color: var(--accent);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        /* Buttons & Pills */
+        .btn-pill {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.65rem 1.2rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: background 0.2s;
-        }
-
-        .btn:hover {
-            background-color: var(--accent-hover);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-        }
-
-        .btn-outline:hover {
-            background-color: #eff6ff;
-        }
-
-        /* Grid Layouts */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.2rem;
-            margin-top: 1rem;
-        }
-
-        .sub-card {
-            background: var(--bg);
-            padding: 1.2rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .badge {
-            display: inline-block;
-            background: #dbeafe;
-            color: #1e40af;
-            padding: 0.2rem 0.6rem;
+            padding: 0.55rem 1.15rem;
             border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.15s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: var(--text-main);
+        }
+
+        .btn-pill:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .btn-pill.dark {
+            background: var(--pill-dark);
+            color: var(--pill-dark-text);
+            border-color: var(--pill-dark);
+        }
+
+        .icon-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: var(--text-main);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.82rem;
+            transition: all 0.2s;
+        }
+
+        .icon-btn:hover {
+            border-color: var(--accent);
+        }
+
+        /* Main Layout */
+        main {
+            max-width: 1180px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Bento Grid Hero */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: 1.75rem;
+            align-items: stretch;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .bento-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 2.25rem;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tag-pill {
+            display: inline-block;
+            align-self: flex-start;
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid var(--border);
             font-size: 0.78rem;
             font-weight: 600;
-            margin-right: 0.4rem;
-            margin-bottom: 0.4rem;
+            color: var(--text-muted);
+            letter-spacing: 0.3px;
+            margin-bottom: 1.2rem;
         }
 
-        /* Video Container */
-        .video-wrapper {
-            margin-top: 1rem;
-            background: #000;
-            border-radius: 8px;
+        .hero-title {
+            font-size: clamp(2.1rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 1.1rem;
+        }
+
+        .hero-bio {
+            font-size: 1.02rem;
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-bio strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: auto;
+        }
+
+        /* Video Box */
+        .video-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .video-header p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 1.1rem;
+        }
+
+        .video-container {
+            width: 100%;
+            border-radius: 14px;
             overflow: hidden;
+            background: #000;
+            border: 1px solid var(--border);
+            aspect-ratio: 16 / 9;
         }
 
         video {
             width: 100%;
-            max-height: 480px;
+            height: 100%;
+            object-fit: cover;
             display: block;
         }
 
-        /* STAR Method List */
-        .star-list {
-            list-style: none;
-            margin-top: 0.8rem;
+        /* Section Titles */
+        .section-title {
+            font-size: 1.55rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.4rem;
         }
 
-        .star-list li {
-            margin-bottom: 0.5rem;
-            padding-left: 0.5rem;
-            border-left: 3px solid var(--accent);
+        .section-subtitle {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Academic Pathway Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 7px;
+            top: 12px;
+            bottom: 12px;
+            width: 2px;
+            background: var(--accent);
+            opacity: 0.4;
+        }
+
+        .timeline-item {
+            position: relative;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.1rem 1.4rem;
+            background: var(--bg);
+            transition: border-color 0.2s;
+        }
+
+        .timeline-item:hover {
+            border-color: var(--accent);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2rem;
+            top: 1.35rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 5px var(--accent-soft);
+        }
+
+        .timeline-item h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline-item span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* 3-Column Cards for Role Models & Mobility */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .info-card {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .card-badge {
+            align-self: flex-start;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .info-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .info-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .info-card p strong {
+            color: var(--text-main);
         }
 
         footer {
             text-align: center;
-            padding: 2rem;
-            color: var(--text-light);
+            padding: 2.5rem 1rem;
+            color: var(--text-muted);
             font-size: 0.85rem;
             border-top: 1px solid var(--border);
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
     </style>
 </head>
 <body>
 
+    <!-- Sticky Glass Header -->
     <header>
-        <h1>Engineering e-Portfolio</h1>
-        <p>Digital Sciences & Computer Engineering | Personal Branding & Career Showcase</p>
-        <nav>
-            <button class="tab-btn active" onclick="openTab(event, 'welcome')">1. Welcome</button>
-            <button class="tab-btn" onclick="openTab(event, 'career')">2. Career Development</button>
-            <button class="tab-btn" onclick="openTab(event, 'engineering')">3. Engineering Course</button>
-            <button class="tab-btn" onclick="openTab(event, 'mobility')">4. International Mobility</button>
-            <button class="tab-btn" onclick="openTab(event, 'sustainability')">5. Sustainability & Civic</button>
-            <button class="tab-btn" onclick="openTab(event, 'sport')">6. Sport & Activities</button>
-        </nav>
+        <div class="nav-container">
+            <a href="#welcome" class="brand">
+                <span class="brand-dot"></span>
+                <span>Portfolio</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#welcome" class="active" data-en="Welcome" data-fr="Accueil">Welcome</a></li>
+                <li><a href="#pathway" data-en="Academic Pathway" data-fr="Parcours">Academic Pathway</a></li>
+                <li><a href="#role-models" data-en="Role Models" data-fr="Rôles Modèles">Role Models</a></li>
+                <li><a href="#mobility" data-en="International Mobility" data-fr="Mobilité Internationale">International Mobility</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="cv-en.pdf" target="_blank" class="btn-pill dark" data-en="Resume (EN)" data-fr="CV (EN)">Resume (EN)</a>
+                <button class="icon-btn" id="themeToggle" title="Toggle Dark/Light Mode">◐</button>
+                <button class="icon-btn" id="langToggle" title="Switch Language">EN</button>
+            </div>
+        </div>
     </header>
 
     <main>
 
-        <!-- TAB 1: WELCOME -->
-        <section id="welcome" class="tab-content active">
-            <div class="card">
-                <div class="profile-container">
-                    <!-- Upload a photo named profile.jpg or replace with your image path -->
-                    <img src="assets/profile.jpg" alt="Profile Photo" class="profile-pic" onerror="this.src='https://via.placeholder.com/140?text=Photo'">
-                    <div class="profile-text">
-                        <h2>Welcome to my e-Portfolio</h2>
-                        <p>
-                            I am an engineering student specializing in <strong>Computer Science and Digital Technologies</strong>, with a strong academic foundation in advanced mathematics, physics, and algorithm design. Passionate about solving complex computational problems, software engineering, and artificial intelligence.
-                        </p>
-                        <div class="btn-group">
-                            <a href="assets/cv-en.pdf" target="_blank" class="btn">📄 CV (English)</a>
-                            <a href="assets/cv-fr.pdf" target="_blank" class="btn">📄 CV (Français)</a>
-                            <a href="https://www.linkedin.com/" target="_blank" class="btn btn-outline">🔗 LinkedIn Profile</a>
-                            <a href="https://github.com/saih-ismail" target="_blank" class="btn btn-outline">💻 GitHub</a>
-                        </div>
-                    </div>
+        <!-- HERO: Welcome + Elevator Pitch Video -->
+        <section id="welcome" class="hero-grid">
+            <!-- Left Bento Card -->
+            <div class="bento-card">
+                <div>
+                    <span class="tag-pill" data-en="DIGITAL SCIENCES · COMPUTER ENGINEERING" data-fr="SCIENCES DU NUMÉRIQUE · INGÉNIERIE">DIGITAL SCIENCES · COMPUTER ENGINEERING</span>
+                    <h1 class="hero-title" data-en="Engineering Portfolio" data-fr="Portfolio d'Ingénieur">Engineering Portfolio</h1>
+                    <p class="hero-bio" data-en="First-year engineering student in <strong>Digital Sciences & Computer Science</strong>, following an intensive <strong>CPGE MP (Mathematics & Physics)</strong> track. Passionate about <strong>algorithm design, scientific computing, software engineering</strong>, and <strong>mathematical optimization</strong>." data-fr="Étudiant ingénieur de première année en <strong>Sciences du Numérique</strong>, après une <strong>CPGE MP (Mathématiques et Physique)</strong>. Passionné par <strong>l'algorithmique, le calcul scientifique, le génie logiciel</strong> et <strong>l'optimisation mathématique</strong>.">
+                        First-year engineering student in <strong>Digital Sciences & Computer Science</strong>, following an intensive <strong>CPGE MP (Mathematics & Physics)</strong> track. Passionate about <strong>algorithm design, scientific computing, software engineering</strong>, and <strong>mathematical optimization</strong>.
+                    </p>
+                </div>
+
+                <div class="cta-row">
+                    <a href="cv-fr.pdf" target="_blank" class="btn-pill">
+                        <span>📄</span> <span data-en="CV (FR)" data-fr="CV (FR)">CV (FR)</span>
+                    </a>
+                    <a href="cv-en.pdf" target="_blank" class="btn-pill dark">
+                        <span>📄</span> <span data-en="Resume (EN)" data-fr="CV (EN)">Resume (EN)</span>
+                    </a>
                 </div>
             </div>
 
-            <div class="card">
-                <h2>🎯 Unique Value Proposition (UVP) & Quick Overview</h2>
-                <p>
-                    Combining rigorous mathematical modeling from intensive preparatory classes with practical software implementation in <strong>Python, C, and Ada</strong>. Navigate through the tabs above to explore my career project, technical productions, and international aspirations.
-                </p>
-                <div style="margin-top: 1rem;">
-                    <span class="badge">Algorithm Design</span>
-                    <span class="badge">Python & Scientific Computing</span>
-                    <span class="badge">C Programming</span>
-                    <span class="badge">Ada</span>
-                    <span class="badge">SQL & Relational Algebra</span>
-                    <span class="badge">Networking</span>
-                    <span class="badge">LaTeX</span>
+            <!-- Right Bento Card: Elevator Pitch -->
+            <div class="bento-card">
+                <div class="video-header">
+                    <h2 data-en="Elevator pitch" data-fr="Pitch vidéo (UVP)">Elevator pitch</h2>
+                    <p data-en="Watch my 2–3 minute Unique Value Proposal (Present · Past · Future) below:" data-fr="Découvrez ma proposition de valeur unique (Présent · Passé · Futur) en anglais :">Watch my 2–3 minute Unique Value Proposal (Present · Past · Future) below:</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- TAB 2: CAREER DEVELOPMENT (MODULE 1 DELIVERABLES) -->
-        <section id="career" class="tab-content">
-            <div class="card">
-                <h2>📄 Curricula Vitae & Professional Profiles</h2>
-                <p>Tailored CVs and professional networking profiles available in both English and French:</p>
-                <div class="btn-group">
-                    <a href="assets/cv-en.pdf" target="_blank" class="btn">📥 Download CV in English (PDF)</a>
-                    <a href="assets/cv-fr.pdf" target="_blank" class="btn">📥 Télécharger CV en Français (PDF)</a>
-                    <a href="https://www.linkedin.com/" target="_blank" class="btn btn-outline">🔗 LinkedIn (EN / FR)</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>🎥 Elevator Pitch Video – Unique Value Proposal (UVP)</h2>
-                <p>A 2–3 minute video in English presenting my background, current engineering focus, and future career goals (<strong>Present + Brief Past + Future</strong>):</p>
-                <div class="video-wrapper">
-                    <video controls>
-                        <source src="assets/uvp-pitch.mp4" type="video/mp4">
+                <div class="video-container">
+                    <video controls preload="metadata">
+                        <source src="pitch.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
             </div>
+        </section>
 
-            <div class="card">
-                <h2>🤝 3 Role Model Profiles Analyzed</h2>
-                <p>Insights gathered from industry professionals and alumni interviews (via <em>My Job Glasses</em> & professional network):</p>
-                <div class="grid-3">
-                    <div class="sub-card">
-                        <h3>1. Profile 1: [Name / Role]</h3>
-                        <p><strong>Company & Sector:</strong> [e.g., AI / Data Engineer at Tech Corp]</p>
-                        <p><strong>Key Takeaways:</strong> Daily responsibilities, core technical stack, and advice on transitioning from engineering school to R&D.</p>
-                    </div>
-                    <div class="sub-card">
-                        <h3>2. Profile 2: [Name / Role]</h3>
-                        <p><strong>Company & Sector:</strong> [e.g., Software Architect / Cybersecurity]</p>
-                        <p><strong>Key Takeaways:</strong> Importance of international exposure, soft skills in agile teams, and career progression.</p>
-                    </div>
-                    <div class="sub-card">
-                        <h3>3. Profile 3: [Name / Role]</h3>
-                        <p><strong>Company & Sector:</strong> [e.g., Quantitative / Systems Engineer]</p>
-                        <p><strong>Key Takeaways:</strong> Applying mathematical optimization and high-performance computing to real-world industrial systems.</p>
-                    </div>
+        <!-- ACADEMIC PATHWAY TIMELINE -->
+        <section id="pathway" class="bento-card">
+            <h2 class="section-title" data-en="Academic pathway" data-fr="Parcours académique">Academic pathway</h2>
+            <p class="section-subtitle" data-en="Present & brief past overview structuring my technical foundation" data-fr="Aperçu de mon parcours académique et technique">Present & brief past overview structuring my technical foundation</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3 data-en="Engineering Degree — Digital Sciences & Computer Science" data-fr="Cycle Ingénieur — Sciences du Numérique">Engineering Degree — Digital Sciences & Computer Science</h3>
+                    <span data-en="2026–2029 · Year 1 (Current) · Algorithms, C, Ada, Python, Architecture & Networks" data-fr="2026–2029 · 1re année (En cours) · Algorithmique, C, Ada, Python, Réseaux">2026–2029 · Year 1 (Current) · Algorithms, C, Ada, Python, Architecture & Networks</span>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3 data-en="CPGE MP (Mathematics & Physics)" data-fr="CPGE MP (Mathématiques et Physique)">CPGE MP (Mathematics & Physics)</h3>
+                    <span data-en="2024–2026 · Intensive two-year preparatory classes for national competitive entrance exams" data-fr="2024–2026 · Classes préparatoires aux grandes écoles, filière Mathématiques et Physique">2024–2026 · Intensive two-year preparatory classes for national competitive entrance exams</span>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3 data-en="Scientific Baccalauréat (Honors)" data-fr="Baccalauréat Scientifique (Mention)">Scientific Baccalauréat (Honors)</h3>
+                    <span data-en="2024 · Mathematics & Physical Sciences specialization" data-fr="2024 · Spécialité Mathématiques et Sciences Physiques">2024 · Mathematics & Physical Sciences specialization</span>
                 </div>
             </div>
-
-            <div class="card">
-                <h2>🌍 Alignment with International Mobility</h2>
-                <p>My 3 target international mobility projects (detailed in the <em>International Mobility</em> tab) are directly aligned with the career paths of the three role models above.</p>
-            </div>
         </section>
 
-        <!-- TAB 3: ENGINEERING COURSE & PROJECTS (STAR METHOD) -->
-        <section id="engineering" class="tab-content">
-            <div class="card">
-                <h2>💻 Engineering Course & Technical Productions</h2>
-                <p>Selected academic and personal engineering projects structured using the <strong>STAR Method</strong> (Situation, Task, Action, Result):</p>
+        <!-- DELIVERABLE: 3 ROLE MODEL PROFILES ANALYZED -->
+        <section id="role-models" class="bento-card">
+            <h2 class="section-title" data-en="3 Role Model Profiles Analyzed" data-fr="Analyse de 3 Rôles Modèles">3 Role Model Profiles Analyzed</h2>
+            <p class="section-subtitle" data-en="Professional career paths investigated via My Job Glasses & alumni network" data-fr="Parcours professionnels étudiés via My Job Glasses et le réseau d'anciens élèves">Professional career paths investigated via My Job Glasses & alumni network</p>
 
-                <h3>1. Experimental Performance Analysis of Sorting Algorithms (C & Python)</h3>
-                <ul class="star-list">
-                    <li><strong>Situation:</strong> Academic computer science benchmark study evaluating theoretical vs. empirical algorithmic complexity.</li>
-                    <li><strong>Task:</strong> Implement and compare six classic sorting algorithms (QuickSort, MergeSort, ShellSort, Insertion, Selection, Bubble) across large datasets.</li>
-                    <li><strong>Action:</strong> Programmed the core algorithms in C, automated benchmarking and data visualization scripts in Python (Matplotlib/NumPy), and authored a technical report in LaTeX.</li>
-                    <li><strong>Result:</strong> Quantified execution times and memory operations, clearly demonstrating $O(n \log n)$ scalability advantages over $O(n^2)$ approaches.</li>
-                </ul>
+            <div class="cards-grid">
+                <div class="info-card">
+                    <span class="card-badge" data-en="Role Model #1" data-fr="Profil #1">Role Model #1</span>
+                    <h3>[Name / Title — e.g., AI & Data Research Engineer]</h3>
+                    <p><strong>Company & Sector:</strong> [Company Name — AI / Big Data]</p>
+                    <p><strong>Background:</strong> Digital Sciences Engineering graduate with international R&D specialization.</p>
+                    <p><strong>Key Insights:</strong> Combines mathematical modeling with scalable Python/C++ architectures. Highlighted the value of strong theoretical foundations in machine learning.</p>
+                </div>
 
-                <h3 style="margin-top: 1.8rem;">2. "Jeu du Devin" – Interactive Terminal Application (Ada)</h3>
-                <ul class="star-list">
-                    <li><strong>Situation:</strong> Software engineering coursework focusing on structured programming and step-by-step algorithmic refinement.</li>
-                    <li><strong>Task:</strong> Design and validate a bidirectional number-guessing program where both user and computer act as player and host.</li>
-                    <li><strong>Action:</strong> Developed modular procedures in Ada with robust input validation, binary search logic, and comprehensive test suites.</li>
-                    <li><strong>Result:</strong> Delivered clean, bug-free code accompanied by a full validation report covering edge cases.</li>
-                </ul>
+                <div class="info-card">
+                    <span class="card-badge" data-en="Role Model #2" data-fr="Profil #2">Role Model #2</span>
+                    <h3>[Name / Title — e.g., Lead Software & Cloud Architect]</h3>
+                    <p><strong>Company & Sector:</strong> [Company Name — Enterprise Tech / SaaS]</p>
+                    <p><strong>Background:</strong> Computer Engineering track followed by an international double degree.</p>
+                    <p><strong>Key Insights:</strong> Emphasized system reliability, distributed computing, and cross-cultural teamwork in agile engineering environments.</p>
+                </div>
 
-                <h3 style="margin-top: 1.8rem;">3. Cycles & Loops: Automatic Differentiation & Thermodynamic Control</h3>
-                <ul class="star-list">
-                    <li><strong>Situation:</strong> Intensive research project investigating feedback loops and computational cycles.</li>
-                    <li><strong>Task:</strong> Model thermodynamic cooling cycles and explore Pollard's rho algorithm and automatic differentiation.</li>
-                    <li><strong>Action:</strong> Built an experimental setup using an Arduino Uno and DS18B20 temperature sensor alongside Python simulations.</li>
-                    <li><strong>Result:</strong> Validated theoretical models against real-time sensor measurements.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- TAB 4: INTERNATIONAL MOBILITY -->
-        <section id="mobility" class="tab-content">
-            <div class="card">
-                <h2>✈️ 3 Potential International Mobility Projects</h2>
-                <p>Academic exchange and international internship targets aligned with my 3 Role Model profiles (17+ weeks requirement):</p>
-                <div class="grid-3">
-                    <div class="sub-card">
-                        <h3>Project 1: Academic Exchange</h3>
-                        <p><strong>Target Country / University:</strong> [e.g., Canada / Northern Europe / Germany]</p>
-                        <p><strong>Alignment:</strong> Matches Role Model #1's specialization in AI, Data Science, and Distributed Systems.</p>
-                    </div>
-                    <div class="sub-card">
-                        <h3>Project 2: Double Degree / S9 Mobility</h3>
-                        <p><strong>Target Country / University:</strong> [e.g., UK / Switzerland / Spain]</p>
-                        <p><strong>Alignment:</strong> Matches Role Model #2's path in Software Engineering and Cybersecurity.</p>
-                    </div>
-                    <div class="sub-card">
-                        <h3>Project 3: International R&D Internship</h3>
-                        <p><strong>Target Country / Industry:</strong> [e.g., European Tech Hub / R&D Lab]</p>
-                        <p><strong>Alignment:</strong> Matches Role Model #3's international industry experience in high-performance computing.</p>
-                    </div>
+                <div class="info-card">
+                    <span class="card-badge" data-en="Role Model #3" data-fr="Profil #3">Role Model #3</span>
+                    <h3>[Name / Title — e.g., Quantitative / High-Performance Computing Engineer]</h3>
+                    <p><strong>Company & Sector:</strong> [Company Name — FinTech / Aerospace / R&D]</p>
+                    <p><strong>Background:</strong> Applied Mathematics & Computer Science specialization.</p>
+                    <p><strong>Key Insights:</strong> Focuses on low-latency algorithms in C and numerical optimization—directly echoing my interest in algorithmic benchmarking.</p>
                 </div>
             </div>
-
-            <div class="card">
-                <h2>🗣️ Languages & Intercultural Skills (PCE / LV2)</h2>
-                <ul>
-                    <li><strong>English:</strong> Professional working & academic proficiency.</li>
-                    <li><strong>French:</strong> Bilingual / Fluent proficiency.</li>
-                    <li><strong>Arabic:</strong> Native proficiency (including classical poetry and composition).</li>
-                    <li><strong>Spanish (LV2):</strong> Beginner level (currently studying conversational and foundational grammar).</li>
-                </ul>
-            </div>
         </section>
 
-        <!-- TAB 5: SUSTAINABILITY & CIVIC ENGAGEMENT -->
-        <section id="sustainability" class="tab-content">
-            <div class="card">
-                <h2>🌱 Sustainability & Civic Engagement</h2>
-                <p>Tracking my civic engagement (40h validation) and commitment to responsible engineering:</p>
-                <h3>Mathematics & Science Tutoring</h3>
-                <p>
-                    Mentoring and tutoring high school and preparatory class students in advanced mathematics, helping learners build confidence and master rigorous analytical methods.
-                </p>
-                <h3>Green IT & Sustainable Computing</h3>
-                <p>
-                    Focusing on algorithmic efficiency (reducing computational overhead in C and Python) and responsible digital practices.
-                </p>
-            </div>
-        </section>
+        <!-- DELIVERABLE: 3 INTERNATIONAL MOBILITY PROJECTS -->
+        <section id="mobility" class="bento-card">
+            <h2 class="section-title" data-en="3 Aligned International Mobility Projects" data-fr="3 Projets de Mobilité Internationale Alignés">3 Aligned International Mobility Projects</h2>
+            <p class="section-subtitle" data-en="Academic exchanges and international targets aligned with the 3 role model profiles above" data-fr="Projets d'échange académique et de césure alignés avec les 3 profils ci-dessus">Academic exchanges and international targets aligned with the 3 role model profiles above</p>
 
-        <!-- TAB 6: SPORT & OTHER ACTIVITIES -->
-        <section id="sport" class="tab-content">
-            <div class="card">
-                <h2>⚽ Sport, Strategy Games & Personal Interests</h2>
-                <div class="grid-3">
-                    <div class="sub-card">
-                        <h3>♟️ Chess & Draughts</h3>
-                        <p>Active player of chess and online checkers/draughts variants—sharpening strategic foresight, pattern recognition, and decision-making under time constraints.</p>
-                    </div>
-                    <div class="sub-card">
-                        <h3>⚽ Football</h3>
-                        <p>Passionate follower and player of football, appreciating team dynamics, tactical analysis, and European competitions.</p>
-                    </div>
-                    <div class="sub-card">
-                        <h3>✍️ Literature & Poetry</h3>
-                        <p>Enjoys philosophical literature, classical Arabic poetry composition, and piano music.</p>
-                    </div>
+            <div class="cards-grid">
+                <div class="info-card">
+                    <span class="card-badge" data-en="Mobility #1 · Aligned with Profile #1" data-fr="Mobilité #1 · Alignée au Profil #1">Mobility #1 · Aligned with Profile #1</span>
+                    <h3>[University / Country #1 — e.g., Canada / Polytechnique Montréal]</h3>
+                    <p><strong>Format:</strong> Academic Semester / Double Degree (S9)</p>
+                    <p><strong>Focus Area:</strong> Artificial Intelligence, Data Science & Statistical Learning.</p>
+                    <p><strong>Why it fits:</strong> World-renowned AI ecosystem that directly prepares for the R&D Data Engineer path of Role Model #1.</p>
+                </div>
+
+                <div class="info-card">
+                    <span class="card-badge" data-en="Mobility #2 · Aligned with Profile #2" data-fr="Mobilité #2 · Alignée au Profil #2">Mobility #2 · Aligned with Profile #2</span>
+                    <h3>[University / Country #2 — e.g., Northern Europe / KTH or TU Munich]</h3>
+                    <p><strong>Format:</strong> S9 Erasmus+ Academic Exchange (17+ weeks)</p>
+                    <p><strong>Focus Area:</strong> Software Systems, Cloud Computing & Cybersecurity.</p>
+                    <p><strong>Why it fits:</strong> English-taught advanced engineering curriculum matching Role Model #2's international software architecture trajectory.</p>
+                </div>
+
+                <div class="info-card">
+                    <span class="card-badge" data-en="Mobility #3 · Aligned with Profile #3" data-fr="Mobilité #3 · Alignée au Profil #3">Mobility #3 · Aligned with Profile #3</span>
+                    <h3>[Destination #3 — e.g., UK / Switzerland R&D Internship or Exchange]</h3>
+                    <p><strong>Format:</strong> International R&D Internship / Academic Exchange</p>
+                    <p><strong>Focus Area:</strong> High-Performance Computing, Scientific Modeling & Optimization.</p>
+                    <p><strong>Why it fits:</strong> Bridges rigorous mathematical optimization and production-grade software, mirroring Role Model #3.</p>
                 </div>
             </div>
         </section>
@@ -468,22 +562,31 @@
     </main>
 
     <footer>
-        <p>© 2026 — Engineering e-Portfolio | Hosted on GitHub Pages</p>
+        <p>© 2026 — Career Project e-Portfolio · Hosted on GitHub Pages</p>
     </footer>
 
     <script>
-        function openTab(evt, tabName) {
-            const contents = document.getElementsByClassName("tab-content");
-            for (let i = 0; i < contents.length; i++) {
-                contents[i].classList.remove("active");
-            }
-            const buttons = document.getElementsByClassName("tab-btn");
-            for (let i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove("active");
-            }
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
+        // 1. Dark / Light Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlEl = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            const current = htmlEl.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', next);
+        });
+
+        // 2. EN / FR Language Switcher
+        const langToggle = document.getElementById('langToggle');
+        let currentLang = 'en';
+
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'fr' : 'en';
+            langToggle.textContent = currentLang.toUpperCase();
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.innerHTML = el.getAttribute(`data-${currentLang}`);
+            });
+        });
     </script>
 </body>
 </html>
