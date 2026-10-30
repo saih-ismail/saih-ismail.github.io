@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-Portfolio | Career Project</title>
+    <title>Ismail SAIH — Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-bg: rgba(255, 255, 255, 0.92);
             --text-main: #0f172a;
             --text-muted: #64748b;
             --border: #e2e8f0;
             --accent: #2563eb;
             --accent-soft: rgba(37, 99, 235, 0.12);
-            --pill-dark: #111827;
+            --pill-dark: #0f172a;
             --pill-dark-text: #ffffff;
-            --glow: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.18), rgba(147, 51, 234, 0.05) 45%, transparent 70%);
-            --shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06);
+            --glow: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.16), rgba(147, 51, 234, 0.04) 45%, transparent 70%);
+            --shadow: 0 12px 32px -12px rgba(15, 23, 42, 0.06);
         }
 
         [data-theme="dark"] {
             --bg: #090d16;
-            --card-bg: rgba(17, 24, 39, 0.85);
+            --card-bg: rgba(17, 24, 39, 0.88);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --border: #1e293b;
@@ -32,8 +32,8 @@
             --accent-soft: rgba(59, 130, 246, 0.2);
             --pill-dark: #f8fafc;
             --pill-dark-text: #0f172a;
-            --glow: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.25), rgba(147, 51, 234, 0.08) 45%, transparent 70%);
-            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --glow: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.24), rgba(147, 51, 234, 0.08) 45%, transparent 70%);
+            --shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.55);
         }
 
         * {
@@ -56,14 +56,14 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Top Navigation Bar */
+        /* Header */
         header {
             position: sticky;
             top: 0;
             z-index: 100;
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--border);
             padding: 0.85rem 2rem;
         }
@@ -86,11 +86,12 @@
             font-size: 1.05rem;
             text-decoration: none;
             color: var(--text-main);
+            letter-spacing: -0.01em;
         }
 
         .brand-dot {
-            width: 12px;
-            height: 12px;
+            width: 11px;
+            height: 11px;
             border-radius: 50%;
             background: var(--accent);
             box-shadow: 0 0 0 4px var(--accent-soft);
@@ -123,17 +124,17 @@
             gap: 0.6rem;
         }
 
-        /* Buttons & Pills */
+        /* Buttons */
         .btn-pill {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.55rem 1.15rem;
+            padding: 0.55rem 1.2rem;
             border-radius: 999px;
             font-size: 0.88rem;
             font-weight: 600;
             text-decoration: none;
-            transition: transform 0.15s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.15s ease, box-shadow 0.2s ease;
             cursor: pointer;
             border: 1px solid var(--border);
             background: var(--card-bg);
@@ -181,7 +182,7 @@
             gap: 2rem;
         }
 
-        /* Bento Grid Hero */
+        /* Hero Grid */
         .hero-grid {
             display: grid;
             grid-template-columns: 1.05fr 1fr;
@@ -224,7 +225,7 @@
         }
 
         .hero-title {
-            font-size: clamp(2.1rem, 4vw, 3rem);
+            font-size: clamp(2.2rem, 4vw, 3.1rem);
             font-weight: 800;
             letter-spacing: -0.03em;
             line-height: 1.15;
@@ -283,7 +284,7 @@
             font-size: 1.55rem;
             font-weight: 800;
             letter-spacing: -0.02em;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
         }
 
         .section-subtitle {
@@ -292,7 +293,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Academic Pathway Timeline */
+        /* Timeline */
         .timeline {
             position: relative;
             padding-left: 2rem;
@@ -347,7 +348,7 @@
             color: var(--text-muted);
         }
 
-        /* 3-Column Cards for Role Models & Mobility */
+        /* 3-Column Grid */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -407,19 +408,18 @@
 </head>
 <body>
 
-    <!-- Sticky Glass Header -->
     <header>
         <div class="nav-container">
             <a href="#welcome" class="brand">
                 <span class="brand-dot"></span>
-                <span>Portfolio</span>
+                <span>Ismail SAIH</span>
             </a>
 
             <ul class="nav-links">
                 <li><a href="#welcome" class="active" data-en="Welcome" data-fr="Accueil">Welcome</a></li>
-                <li><a href="#pathway" data-en="Academic Pathway" data-fr="Parcours">Academic Pathway</a></li>
-                <li><a href="#role-models" data-en="Role Models" data-fr="Rôles Modèles">Role Models</a></li>
-                <li><a href="#mobility" data-en="International Mobility" data-fr="Mobilité Internationale">International Mobility</a></li>
+                <li><a href="#pathway" data-en="Education" data-fr="Formation">Education</a></li>
+                <li><a href="#inspiration" data-en="Career Perspectives" data-fr="Perspectives">Career Perspectives</a></li>
+                <li><a href="#mobility" data-en="Mobility" data-fr="Mobilité">Mobility</a></li>
             </ul>
 
             <div class="nav-actions">
@@ -432,33 +432,31 @@
 
     <main>
 
-        <!-- HERO: Welcome + Elevator Pitch Video -->
+        <!-- HERO: Welcome + Video -->
         <section id="welcome" class="hero-grid">
-            <!-- Left Bento Card -->
             <div class="bento-card">
                 <div>
-                    <span class="tag-pill" data-en="DIGITAL SCIENCES · COMPUTER ENGINEERING" data-fr="SCIENCES DU NUMÉRIQUE · INGÉNIERIE">DIGITAL SCIENCES · COMPUTER ENGINEERING</span>
-                    <h1 class="hero-title" data-en="Engineering Portfolio" data-fr="Portfolio d'Ingénieur">Engineering Portfolio</h1>
-                    <p class="hero-bio" data-en="First-year engineering student in <strong>Digital Sciences & Computer Science</strong>, following an intensive <strong>CPGE MP (Mathematics & Physics)</strong> track. Passionate about <strong>algorithm design, scientific computing, software engineering</strong>, and <strong>mathematical optimization</strong>." data-fr="Étudiant ingénieur de première année en <strong>Sciences du Numérique</strong>, après une <strong>CPGE MP (Mathématiques et Physique)</strong>. Passionné par <strong>l'algorithmique, le calcul scientifique, le génie logiciel</strong> et <strong>l'optimisation mathématique</strong>.">
-                        First-year engineering student in <strong>Digital Sciences & Computer Science</strong>, following an intensive <strong>CPGE MP (Mathematics & Physics)</strong> track. Passionate about <strong>algorithm design, scientific computing, software engineering</strong>, and <strong>mathematical optimization</strong>.
+                    <span class="tag-pill">ENSEEIHT · SN</span>
+                    <h1 class="hero-title">Ismail SAIH</h1>
+                    <p class="hero-bio" data-en="First-year engineering student at <strong>ENSEEIHT</strong> (<strong>SN — Digital Sciences</strong>), after two years of <strong>CPGE MP</strong> (Mathematics & Physics) in Morocco. I am interested in <strong>software engineering, algorithm design, scientific computing</strong>, and <strong>applied mathematics</strong>." data-fr="Étudiant ingénieur de première année à l'<strong>ENSEEIHT</strong> (<strong>SN — Sciences du Numérique</strong>), après deux années de <strong>CPGE MP</strong> (Mathématiques et Physique) au Maroc. Je m'intéresse au <strong>génie logiciel, à l'algorithmique, au calcul scientifique</strong> et aux <strong>mathématiques appliquées</strong>.">
+                        First-year engineering student at <strong>ENSEEIHT</strong> (<strong>SN — Digital Sciences</strong>), after two years of <strong>CPGE MP</strong> (Mathematics & Physics) in Morocco. I am interested in <strong>software engineering, algorithm design, scientific computing</strong>, and <strong>applied mathematics</strong>.
                     </p>
                 </div>
 
                 <div class="cta-row">
                     <a href="cv-fr.pdf" target="_blank" class="btn-pill">
-                        <span>📄</span> <span data-en="CV (FR)" data-fr="CV (FR)">CV (FR)</span>
+                        <span>📄</span> <span>CV (FR)</span>
                     </a>
                     <a href="cv-en.pdf" target="_blank" class="btn-pill dark">
-                        <span>📄</span> <span data-en="Resume (EN)" data-fr="CV (EN)">Resume (EN)</span>
+                        <span>📄</span> <span>Resume (EN)</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Right Bento Card: Elevator Pitch -->
             <div class="bento-card">
                 <div class="video-header">
-                    <h2 data-en="Elevator pitch" data-fr="Pitch vidéo (UVP)">Elevator pitch</h2>
-                    <p data-en="Watch my 2–3 minute Unique Value Proposal (Present · Past · Future) below:" data-fr="Découvrez ma proposition de valeur unique (Présent · Passé · Futur) en anglais :">Watch my 2–3 minute Unique Value Proposal (Present · Past · Future) below:</p>
+                    <h2 data-en="Elevator pitch" data-fr="Présentation vidéo">Elevator pitch</h2>
+                    <p data-en="Watch my pitch below:" data-fr="Découvrez ma présentation ci-dessous :">Watch my pitch below:</p>
                 </div>
                 <div class="video-container">
                     <video controls preload="metadata">
@@ -469,92 +467,86 @@
             </div>
         </section>
 
-        <!-- ACADEMIC PATHWAY TIMELINE -->
+        <!-- ACADEMIC PATHWAY -->
         <section id="pathway" class="bento-card">
             <h2 class="section-title" data-en="Academic pathway" data-fr="Parcours académique">Academic pathway</h2>
-            <p class="section-subtitle" data-en="Present & brief past overview structuring my technical foundation" data-fr="Aperçu de mon parcours académique et technique">Present & brief past overview structuring my technical foundation</p>
+            <p class="section-subtitle" data-en="Education & academic background" data-fr="Formation et cursus">Education & academic background</p>
 
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <h3 data-en="Engineering Degree — Digital Sciences & Computer Science" data-fr="Cycle Ingénieur — Sciences du Numérique">Engineering Degree — Digital Sciences & Computer Science</h3>
-                    <span data-en="2026–2029 · Year 1 (Current) · Algorithms, C, Ada, Python, Architecture & Networks" data-fr="2026–2029 · 1re année (En cours) · Algorithmique, C, Ada, Python, Réseaux">2026–2029 · Year 1 (Current) · Algorithms, C, Ada, Python, Architecture & Networks</span>
+                    <h3 data-en="ENSEEIHT — SN (Sciences du Numérique)" data-fr="ENSEEIHT — SN (Sciences du Numérique)">ENSEEIHT — SN (Sciences du Numérique)</h3>
+                    <span data-en="2026–2029 · Year 1 (current) · Toulouse, France" data-fr="2026–2029 · 1re année (en cours) · Toulouse, France">2026–2029 · Year 1 (current) · Toulouse, France</span>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <h3 data-en="CPGE MP (Mathematics & Physics)" data-fr="CPGE MP (Mathématiques et Physique)">CPGE MP (Mathematics & Physics)</h3>
-                    <span data-en="2024–2026 · Intensive two-year preparatory classes for national competitive entrance exams" data-fr="2024–2026 · Classes préparatoires aux grandes écoles, filière Mathématiques et Physique">2024–2026 · Intensive two-year preparatory classes for national competitive entrance exams</span>
+                    <h3 data-en="CPGE MP · Morocco" data-fr="CPGE MP · Maroc">CPGE MP · Morocco</h3>
+                    <span data-en="2024–2026 · Intensive preparatory classes in Mathematics & Physics" data-fr="2024–2026 · Classes préparatoires aux grandes écoles, filière Mathématiques et Physique">2024–2026 · Intensive preparatory classes in Mathematics & Physics</span>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <h3 data-en="Scientific Baccalauréat (Honors)" data-fr="Baccalauréat Scientifique (Mention)">Scientific Baccalauréat (Honors)</h3>
-                    <span data-en="2024 · Mathematics & Physical Sciences specialization" data-fr="2024 · Spécialité Mathématiques et Sciences Physiques">2024 · Mathematics & Physical Sciences specialization</span>
+                    <h3 data-en="Baccalauréat Sciences Mathématiques · Morocco" data-fr="Baccalauréat Sciences Mathématiques · Maroc">Baccalauréat Sciences Mathématiques · Morocco</h3>
+                    <span data-en="2024 · Honors (Mention Bien)" data-fr="2024 · Mention Bien">2024 · Honors (Mention Bien)</span>
                 </div>
             </div>
         </section>
 
-        <!-- DELIVERABLE: 3 ROLE MODEL PROFILES ANALYZED -->
-        <section id="role-models" class="bento-card">
-            <h2 class="section-title" data-en="3 Role Model Profiles Analyzed" data-fr="Analyse de 3 Rôles Modèles">3 Role Model Profiles Analyzed</h2>
-            <p class="section-subtitle" data-en="Professional career paths investigated via My Job Glasses & alumni network" data-fr="Parcours professionnels étudiés via My Job Glasses et le réseau d'anciens élèves">Professional career paths investigated via My Job Glasses & alumni network</p>
+        <!-- CAREER PERSPECTIVES / INSPIRING PROFILES -->
+        <section id="inspiration" class="bento-card">
+            <h2 class="section-title" data-en="Career perspectives" data-fr="Perspectives de carrière">Career perspectives</h2>
+            <p class="section-subtitle" data-en="Professional profiles and industry paths that inspire my career direction" data-fr="Parcours d'ingénieurs et secteurs qui orientent mon projet professionnel">Professional profiles and industry paths that inspire my career direction</p>
 
             <div class="cards-grid">
                 <div class="info-card">
-                    <span class="card-badge" data-en="Role Model #1" data-fr="Profil #1">Role Model #1</span>
-                    <h3>[Name / Title — e.g., AI & Data Research Engineer]</h3>
-                    <p><strong>Company & Sector:</strong> [Company Name — AI / Big Data]</p>
-                    <p><strong>Background:</strong> Digital Sciences Engineering graduate with international R&D specialization.</p>
-                    <p><strong>Key Insights:</strong> Combines mathematical modeling with scalable Python/C++ architectures. Highlighted the value of strong theoretical foundations in machine learning.</p>
+                    <span class="card-badge" data-en="Profile 01" data-fr="Profil 01">Profile 01</span>
+                    <h3>[Name / Role — e.g., Software & Systems Engineer]</h3>
+                    <p><strong>Company:</strong> [Company Name]</p>
+                    <p><strong>Focus:</strong> Designing scalable software systems, backend architectures, and high-performance applications.</p>
                 </div>
 
                 <div class="info-card">
-                    <span class="card-badge" data-en="Role Model #2" data-fr="Profil #2">Role Model #2</span>
-                    <h3>[Name / Title — e.g., Lead Software & Cloud Architect]</h3>
-                    <p><strong>Company & Sector:</strong> [Company Name — Enterprise Tech / SaaS]</p>
-                    <p><strong>Background:</strong> Computer Engineering track followed by an international double degree.</p>
-                    <p><strong>Key Insights:</strong> Emphasized system reliability, distributed computing, and cross-cultural teamwork in agile engineering environments.</p>
+                    <span class="card-badge" data-en="Profile 02" data-fr="Profil 02">Profile 02</span>
+                    <h3>[Name / Role — e.g., AI & Data Science Engineer]</h3>
+                    <p><strong>Company:</strong> [Company Name]</p>
+                    <p><strong>Focus:</strong> Applying statistical learning, mathematical optimization, and Python-based modeling to complex datasets.</p>
                 </div>
 
                 <div class="info-card">
-                    <span class="card-badge" data-en="Role Model #3" data-fr="Profil #3">Role Model #3</span>
-                    <h3>[Name / Title — e.g., Quantitative / High-Performance Computing Engineer]</h3>
-                    <p><strong>Company & Sector:</strong> [Company Name — FinTech / Aerospace / R&D]</p>
-                    <p><strong>Background:</strong> Applied Mathematics & Computer Science specialization.</p>
-                    <p><strong>Key Insights:</strong> Focuses on low-latency algorithms in C and numerical optimization—directly echoing my interest in algorithmic benchmarking.</p>
+                    <span class="card-badge" data-en="Profile 03" data-fr="Profil 03">Profile 03</span>
+                    <h3>[Name / Role — e.g., Quantitative / R&D Engineer]</h3>
+                    <p><strong>Company:</strong> [Company Name]</p>
+                    <p><strong>Focus:</strong> Low-latency algorithms and scientific computing at the intersection of applied mathematics and computer science.</p>
                 </div>
             </div>
         </section>
 
-        <!-- DELIVERABLE: 3 INTERNATIONAL MOBILITY PROJECTS -->
+        <!-- INTERNATIONAL MOBILITY -->
         <section id="mobility" class="bento-card">
-            <h2 class="section-title" data-en="3 Aligned International Mobility Projects" data-fr="3 Projets de Mobilité Internationale Alignés">3 Aligned International Mobility Projects</h2>
-            <p class="section-subtitle" data-en="Academic exchanges and international targets aligned with the 3 role model profiles above" data-fr="Projets d'échange académique et de césure alignés avec les 3 profils ci-dessus">Academic exchanges and international targets aligned with the 3 role model profiles above</p>
+            <h2 class="section-title" data-en="International mobility" data-fr="Mobilité internationale">International mobility</h2>
+            <p class="section-subtitle" data-en="Target academic exchanges and international opportunities" data-fr="Projets d'échanges académiques et opportunités à l'international">Target academic exchanges and international opportunities</p>
 
             <div class="cards-grid">
                 <div class="info-card">
-                    <span class="card-badge" data-en="Mobility #1 · Aligned with Profile #1" data-fr="Mobilité #1 · Alignée au Profil #1">Mobility #1 · Aligned with Profile #1</span>
-                    <h3>[University / Country #1 — e.g., Canada / Polytechnique Montréal]</h3>
-                    <p><strong>Format:</strong> Academic Semester / Double Degree (S9)</p>
-                    <p><strong>Focus Area:</strong> Artificial Intelligence, Data Science & Statistical Learning.</p>
-                    <p><strong>Why it fits:</strong> World-renowned AI ecosystem that directly prepares for the R&D Data Engineer path of Role Model #1.</p>
+                    <span class="card-badge" data-en="Option 01" data-fr="Option 01">Option 01</span>
+                    <h3>[University / Country #1]</h3>
+                    <p><strong>Program:</strong> Academic Exchange / Double Degree</p>
+                    <p><strong>Focus:</strong> Software Engineering & Distributed Systems.</p>
                 </div>
 
                 <div class="info-card">
-                    <span class="card-badge" data-en="Mobility #2 · Aligned with Profile #2" data-fr="Mobilité #2 · Alignée au Profil #2">Mobility #2 · Aligned with Profile #2</span>
-                    <h3>[University / Country #2 — e.g., Northern Europe / KTH or TU Munich]</h3>
-                    <p><strong>Format:</strong> S9 Erasmus+ Academic Exchange (17+ weeks)</p>
-                    <p><strong>Focus Area:</strong> Software Systems, Cloud Computing & Cybersecurity.</p>
-                    <p><strong>Why it fits:</strong> English-taught advanced engineering curriculum matching Role Model #2's international software architecture trajectory.</p>
+                    <span class="card-badge" data-en="Option 02" data-fr="Option 02">Option 02</span>
+                    <h3>[University / Country #2]</h3>
+                    <p><strong>Program:</strong> Erasmus+ Semester Exchange</p>
+                    <p><strong>Focus:</strong> Artificial Intelligence, Machine Learning & Data Science.</p>
                 </div>
 
                 <div class="info-card">
-                    <span class="card-badge" data-en="Mobility #3 · Aligned with Profile #3" data-fr="Mobilité #3 · Alignée au Profil #3">Mobility #3 · Aligned with Profile #3</span>
-                    <h3>[Destination #3 — e.g., UK / Switzerland R&D Internship or Exchange]</h3>
-                    <p><strong>Format:</strong> International R&D Internship / Academic Exchange</p>
-                    <p><strong>Focus Area:</strong> High-Performance Computing, Scientific Modeling & Optimization.</p>
-                    <p><strong>Why it fits:</strong> Bridges rigorous mathematical optimization and production-grade software, mirroring Role Model #3.</p>
+                    <span class="card-badge" data-en="Option 03" data-fr="Option 03">Option 03</span>
+                    <h3>[Destination / Country #3]</h3>
+                    <p><strong>Program:</strong> International R&D Internship / Exchange</p>
+                    <p><strong>Focus:</strong> High-Performance Computing & Applied Mathematics.</p>
                 </div>
             </div>
         </section>
@@ -562,11 +554,11 @@
     </main>
 
     <footer>
-        <p>© 2026 — Career Project e-Portfolio · Hosted on GitHub Pages</p>
+        <p>© 2026 Ismail SAIH</p>
     </footer>
 
     <script>
-        // 1. Dark / Light Mode Toggle
+        // Dark / Light Mode Toggle
         const themeToggle = document.getElementById('themeToggle');
         const htmlEl = document.documentElement;
 
@@ -576,7 +568,7 @@
             htmlEl.setAttribute('data-theme', next);
         });
 
-        // 2. EN / FR Language Switcher
+        // EN / FR Language Switcher
         const langToggle = document.getElementById('langToggle');
         let currentLang = 'en';
 
