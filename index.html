@@ -1,88 +1,489 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio</title>
+    <title>Engineering e-Portfolio</title>
     <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #334155;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
         }
+
+        /* Header & Navigation */
         header {
-            text-align: center;
-            padding: 40px 0;
-        }
-        section {
-            background: white;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        h2 { border-bottom: 2px solid #eee; padding-bottom: 8px; color: #0366d6; }
-        .btn-group a {
-            display: inline-block;
-            background: #0366d6;
+            background-color: var(--primary);
             color: white;
-            padding: 10px 18px;
-            margin-right: 10px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 500;
+            padding: 2rem 1rem 0 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
         }
-        .btn-group a:hover { background: #0056b3; }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .tab-btn {
+            background: transparent;
+            color: #cbd5e1;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            color: white;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .tab-btn.active {
+            color: white;
+            border-bottom-color: #38bdf8;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Main Container */
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1.2rem;
+            min-height: 70vh;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards & Sections */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        /* Hero / Welcome Profile */
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-pic {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            background-color: #e2e8f0;
+        }
+
+        .profile-text {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        /* Buttons & Links */
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.65rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .btn-outline:hover {
+            background-color: #eff6ff;
+        }
+
+        /* Grid Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .sub-card {
+            background: var(--bg);
+            padding: 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-right: 0.4rem;
+            margin-bottom: 0.4rem;
+        }
+
+        /* Video Container */
+        .video-wrapper {
+            margin-top: 1rem;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
         video {
             width: 100%;
-            max-height: 450px;
-            border-radius: 5px;
-            background: #000;
+            max-height: 480px;
+            display: block;
+        }
+
+        /* STAR Method List */
+        .star-list {
+            list-style: none;
+            margin-top: 0.8rem;
+        }
+
+        .star-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 0.5rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Bienvenue sur mon Portfolio</h1>
-        <p>Découvrez mon parcours, mes CVs et mes projets.</p>
+        <h1>Engineering e-Portfolio</h1>
+        <p>Digital Sciences & Computer Engineering | Personal Branding & Career Showcase</p>
+        <nav>
+            <button class="tab-btn active" onclick="openTab(event, 'welcome')">1. Welcome</button>
+            <button class="tab-btn" onclick="openTab(event, 'career')">2. Career Development</button>
+            <button class="tab-btn" onclick="openTab(event, 'engineering')">3. Engineering Course</button>
+            <button class="tab-btn" onclick="openTab(event, 'mobility')">4. International Mobility</button>
+            <button class="tab-btn" onclick="openTab(event, 'sustainability')">5. Sustainability & Civic</button>
+            <button class="tab-btn" onclick="openTab(event, 'sport')">6. Sport & Activities</button>
+        </nav>
     </header>
 
-    <!-- SECTION CVs -->
-    <section>
-        <h2>📄 Mes CVs</h2>
-        <p>Vous pouvez consulter ou télécharger mes CVs ci-dessous :</p>
-        <div class="btn-group">
-            <a href="assets/cv-fr.pdf" target="_blank">CV en Français (PDF)</a>
-            <a href="assets/cv-en.pdf" target="_blank">CV en Anglais (PDF)</a>
-        </div>
-    </section>
+    <main>
 
-    <!-- SECTION E-PORTFOLIO -->
-    <section>
-        <h2>🚀 E-Portfolio & Projets</h2>
-        <p>Ici, vous pouvez présenter vos projets, vos compétences et vos réalisations académiques ou personnelles.</p>
-        <ul>
-            <li><strong>Projet 1 :</strong> Description rapide de votre projet...</li>
-            <li><strong>Projet 2 :</strong> Description rapide d'un autre projet...</li>
-        </ul>
-    </section>
+        <!-- TAB 1: WELCOME -->
+        <section id="welcome" class="tab-content active">
+            <div class="card">
+                <div class="profile-container">
+                    <!-- Upload a photo named profile.jpg or replace with your image path -->
+                    <img src="assets/profile.jpg" alt="Profile Photo" class="profile-pic" onerror="this.src='https://via.placeholder.com/140?text=Photo'">
+                    <div class="profile-text">
+                        <h2>Welcome to my e-Portfolio</h2>
+                        <p>
+                            I am an engineering student specializing in <strong>Computer Science and Digital Technologies</strong>, with a strong academic foundation in advanced mathematics, physics, and algorithm design. Passionate about solving complex computational problems, software engineering, and artificial intelligence.
+                        </p>
+                        <div class="btn-group">
+                            <a href="assets/cv-en.pdf" target="_blank" class="btn">📄 CV (English)</a>
+                            <a href="assets/cv-fr.pdf" target="_blank" class="btn">📄 CV (Français)</a>
+                            <a href="https://www.linkedin.com/" target="_blank" class="btn btn-outline">🔗 LinkedIn Profile</a>
+                            <a href="https://github.com/saih-ismail" target="_blank" class="btn btn-outline">💻 GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <!-- SECTION VIDÉO -->
-    <section>
-        <h2>🎥 Vidéo de présentation</h2>
-        <p>Une brève introduction ou présentation vidéo :</p>
-        <!-- Si la vidéo est locale -->
-        <video controls>
-            <source src="assets/presentation.mp4" type="video/mp4">
-            Votre navigateur ne supporte pas la lecture de vidéos.
-        </video>
-        <!-- Astuce : Si vous préférez YouTube, remplacez la balise <video> par un iframe YouTube -->
-    </section>
+            <div class="card">
+                <h2>🎯 Unique Value Proposition (UVP) & Quick Overview</h2>
+                <p>
+                    Combining rigorous mathematical modeling from intensive preparatory classes with practical software implementation in <strong>Python, C, and Ada</strong>. Navigate through the tabs above to explore my career project, technical productions, and international aspirations.
+                </p>
+                <div style="margin-top: 1rem;">
+                    <span class="badge">Algorithm Design</span>
+                    <span class="badge">Python & Scientific Computing</span>
+                    <span class="badge">C Programming</span>
+                    <span class="badge">Ada</span>
+                    <span class="badge">SQL & Relational Algebra</span>
+                    <span class="badge">Networking</span>
+                    <span class="badge">LaTeX</span>
+                </div>
+            </div>
+        </section>
 
+        <!-- TAB 2: CAREER DEVELOPMENT (MODULE 1 DELIVERABLES) -->
+        <section id="career" class="tab-content">
+            <div class="card">
+                <h2>📄 Curricula Vitae & Professional Profiles</h2>
+                <p>Tailored CVs and professional networking profiles available in both English and French:</p>
+                <div class="btn-group">
+                    <a href="assets/cv-en.pdf" target="_blank" class="btn">📥 Download CV in English (PDF)</a>
+                    <a href="assets/cv-fr.pdf" target="_blank" class="btn">📥 Télécharger CV en Français (PDF)</a>
+                    <a href="https://www.linkedin.com/" target="_blank" class="btn btn-outline">🔗 LinkedIn (EN / FR)</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🎥 Elevator Pitch Video – Unique Value Proposal (UVP)</h2>
+                <p>A 2–3 minute video in English presenting my background, current engineering focus, and future career goals (<strong>Present + Brief Past + Future</strong>):</p>
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="assets/uvp-pitch.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🤝 3 Role Model Profiles Analyzed</h2>
+                <p>Insights gathered from industry professionals and alumni interviews (via <em>My Job Glasses</em> & professional network):</p>
+                <div class="grid-3">
+                    <div class="sub-card">
+                        <h3>1. Profile 1: [Name / Role]</h3>
+                        <p><strong>Company & Sector:</strong> [e.g., AI / Data Engineer at Tech Corp]</p>
+                        <p><strong>Key Takeaways:</strong> Daily responsibilities, core technical stack, and advice on transitioning from engineering school to R&D.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>2. Profile 2: [Name / Role]</h3>
+                        <p><strong>Company & Sector:</strong> [e.g., Software Architect / Cybersecurity]</p>
+                        <p><strong>Key Takeaways:</strong> Importance of international exposure, soft skills in agile teams, and career progression.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>3. Profile 3: [Name / Role]</h3>
+                        <p><strong>Company & Sector:</strong> [e.g., Quantitative / Systems Engineer]</p>
+                        <p><strong>Key Takeaways:</strong> Applying mathematical optimization and high-performance computing to real-world industrial systems.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🌍 Alignment with International Mobility</h2>
+                <p>My 3 target international mobility projects (detailed in the <em>International Mobility</em> tab) are directly aligned with the career paths of the three role models above.</p>
+            </div>
+        </section>
+
+        <!-- TAB 3: ENGINEERING COURSE & PROJECTS (STAR METHOD) -->
+        <section id="engineering" class="tab-content">
+            <div class="card">
+                <h2>💻 Engineering Course & Technical Productions</h2>
+                <p>Selected academic and personal engineering projects structured using the <strong>STAR Method</strong> (Situation, Task, Action, Result):</p>
+
+                <h3>1. Experimental Performance Analysis of Sorting Algorithms (C & Python)</h3>
+                <ul class="star-list">
+                    <li><strong>Situation:</strong> Academic computer science benchmark study evaluating theoretical vs. empirical algorithmic complexity.</li>
+                    <li><strong>Task:</strong> Implement and compare six classic sorting algorithms (QuickSort, MergeSort, ShellSort, Insertion, Selection, Bubble) across large datasets.</li>
+                    <li><strong>Action:</strong> Programmed the core algorithms in C, automated benchmarking and data visualization scripts in Python (Matplotlib/NumPy), and authored a technical report in LaTeX.</li>
+                    <li><strong>Result:</strong> Quantified execution times and memory operations, clearly demonstrating $O(n \log n)$ scalability advantages over $O(n^2)$ approaches.</li>
+                </ul>
+
+                <h3 style="margin-top: 1.8rem;">2. "Jeu du Devin" – Interactive Terminal Application (Ada)</h3>
+                <ul class="star-list">
+                    <li><strong>Situation:</strong> Software engineering coursework focusing on structured programming and step-by-step algorithmic refinement.</li>
+                    <li><strong>Task:</strong> Design and validate a bidirectional number-guessing program where both user and computer act as player and host.</li>
+                    <li><strong>Action:</strong> Developed modular procedures in Ada with robust input validation, binary search logic, and comprehensive test suites.</li>
+                    <li><strong>Result:</strong> Delivered clean, bug-free code accompanied by a full validation report covering edge cases.</li>
+                </ul>
+
+                <h3 style="margin-top: 1.8rem;">3. Cycles & Loops: Automatic Differentiation & Thermodynamic Control</h3>
+                <ul class="star-list">
+                    <li><strong>Situation:</strong> Intensive research project investigating feedback loops and computational cycles.</li>
+                    <li><strong>Task:</strong> Model thermodynamic cooling cycles and explore Pollard's rho algorithm and automatic differentiation.</li>
+                    <li><strong>Action:</strong> Built an experimental setup using an Arduino Uno and DS18B20 temperature sensor alongside Python simulations.</li>
+                    <li><strong>Result:</strong> Validated theoretical models against real-time sensor measurements.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- TAB 4: INTERNATIONAL MOBILITY -->
+        <section id="mobility" class="tab-content">
+            <div class="card">
+                <h2>✈️ 3 Potential International Mobility Projects</h2>
+                <p>Academic exchange and international internship targets aligned with my 3 Role Model profiles (17+ weeks requirement):</p>
+                <div class="grid-3">
+                    <div class="sub-card">
+                        <h3>Project 1: Academic Exchange</h3>
+                        <p><strong>Target Country / University:</strong> [e.g., Canada / Northern Europe / Germany]</p>
+                        <p><strong>Alignment:</strong> Matches Role Model #1's specialization in AI, Data Science, and Distributed Systems.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Project 2: Double Degree / S9 Mobility</h3>
+                        <p><strong>Target Country / University:</strong> [e.g., UK / Switzerland / Spain]</p>
+                        <p><strong>Alignment:</strong> Matches Role Model #2's path in Software Engineering and Cybersecurity.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Project 3: International R&D Internship</h3>
+                        <p><strong>Target Country / Industry:</strong> [e.g., European Tech Hub / R&D Lab]</p>
+                        <p><strong>Alignment:</strong> Matches Role Model #3's international industry experience in high-performance computing.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🗣️ Languages & Intercultural Skills (PCE / LV2)</h2>
+                <ul>
+                    <li><strong>English:</strong> Professional working & academic proficiency.</li>
+                    <li><strong>French:</strong> Bilingual / Fluent proficiency.</li>
+                    <li><strong>Arabic:</strong> Native proficiency (including classical poetry and composition).</li>
+                    <li><strong>Spanish (LV2):</strong> Beginner level (currently studying conversational and foundational grammar).</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- TAB 5: SUSTAINABILITY & CIVIC ENGAGEMENT -->
+        <section id="sustainability" class="tab-content">
+            <div class="card">
+                <h2>🌱 Sustainability & Civic Engagement</h2>
+                <p>Tracking my civic engagement (40h validation) and commitment to responsible engineering:</p>
+                <h3>Mathematics & Science Tutoring</h3>
+                <p>
+                    Mentoring and tutoring high school and preparatory class students in advanced mathematics, helping learners build confidence and master rigorous analytical methods.
+                </p>
+                <h3>Green IT & Sustainable Computing</h3>
+                <p>
+                    Focusing on algorithmic efficiency (reducing computational overhead in C and Python) and responsible digital practices.
+                </p>
+            </div>
+        </section>
+
+        <!-- TAB 6: SPORT & OTHER ACTIVITIES -->
+        <section id="sport" class="tab-content">
+            <div class="card">
+                <h2>⚽ Sport, Strategy Games & Personal Interests</h2>
+                <div class="grid-3">
+                    <div class="sub-card">
+                        <h3>♟️ Chess & Draughts</h3>
+                        <p>Active player of chess and online checkers/draughts variants—sharpening strategic foresight, pattern recognition, and decision-making under time constraints.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>⚽ Football</h3>
+                        <p>Passionate follower and player of football, appreciating team dynamics, tactical analysis, and European competitions.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>✍️ Literature & Poetry</h3>
+                        <p>Enjoys philosophical literature, classical Arabic poetry composition, and piano music.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 — Engineering e-Portfolio | Hosted on GitHub Pages</p>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            const contents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active");
+            }
+            const buttons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
 </body>
 </html>
