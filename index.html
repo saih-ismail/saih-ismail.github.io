@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ismail SAIH — Cybersecurity Portfolio</title>
+    <title>Ismail SAIH — Engineering & Cybersecurity Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #040812;
-            --surface: rgba(11, 18, 34, 0.88);
-            --surface-solid: #0b1222;
+            --bg: #070b14;
+            --bg-alt: #0c1322;
+            --surface: #111a2e;
             --surface-border: #1e293b;
-            --text-main: #f1f5f9;
+            --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --accent: #10b981;
             --accent-secondary: #06b6d4;
-            --accent-glow: rgba(16, 185, 129, 0.14);
-            --pill-bg: #131c31;
-            --grid-line: rgba(16, 185, 129, 0.04);
+            --accent-soft: rgba(16, 185, 129, 0.12);
+            --tag-bg: #1e293b;
+            --shadow: 0 12px 32px -10px rgba(0, 0, 0, 0.45);
             --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         [data-theme="light"] {
             --bg: #f8fafc;
-            --surface: rgba(255, 255, 255, 0.92);
-            --surface-solid: #ffffff;
-            --surface-border: #cbd5e1;
+            --bg-alt: #f1f5f9;
+            --surface: #ffffff;
+            --surface-border: #e2e8f0;
             --text-main: #0f172a;
             --text-muted: #475569;
             --accent: #059669;
             --accent-secondary: #0284c7;
-            --accent-glow: rgba(5, 150, 105, 0.1);
-            --pill-bg: #f1f5f9;
-            --grid-line: rgba(15, 23, 42, 0.035);
+            --accent-soft: rgba(5, 150, 105, 0.1);
+            --tag-bg: #f1f5f9;
+            --shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.07);
         }
 
         * {
@@ -48,245 +48,284 @@
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg);
-            background-image: 
-                linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-                linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px),
-                radial-gradient(circle at 15% 15%, var(--accent-glow), transparent 40%);
-            background-size: 32px 32px, 32px 32px, 100% 100%;
-            background-attachment: fixed;
             color: var(--text-main);
-            line-height: 1.55;
+            line-height: 1.65;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Top Bar Controls */
-        .top-bar {
-            position: fixed;
-            top: 1.25rem;
-            right: 1.5rem;
-            display: flex;
-            gap: 0.5rem;
+        /* Top Sticky Navigation */
+        header {
+            position: sticky;
+            top: 0;
             z-index: 1000;
+            background: rgba(17, 26, 46, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--surface-border);
         }
 
-        .control-btn {
-            background: var(--surface-solid);
+        [data-theme="light"] header {
+            background: rgba(255, 255, 255, 0.88);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.9rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .brand-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.6rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ctrl-btn {
+            background: var(--tag-bg);
             border: 1px solid var(--surface-border);
             color: var(--text-main);
-            padding: 0.45rem 0.9rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 8px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.78rem;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             transition: var(--transition);
         }
 
-        .control-btn:hover {
+        .ctrl-btn:hover {
             border-color: var(--accent);
             color: var(--accent);
-            transform: translateY(-1px);
         }
 
-        /* Main Asymmetric Layout */
-        .layout-wrapper {
-            max-width: 1340px;
+        /* Section Containers */
+        .section-wrapper {
+            padding: 4.5rem 1.5rem;
+        }
+
+        .section-wrapper.alt {
+            background-color: var(--bg-alt);
+            border-top: 1px solid var(--surface-border);
+            border-bottom: 1px solid var(--surface-border);
+        }
+
+        .container {
+            max-width: 1160px;
             margin: 0 auto;
-            padding: 2rem 2rem;
-            display: grid;
-            grid-template-columns: 360px 1fr;
-            gap: 2.25rem;
-            align-items: start;
         }
 
-        @media (max-width: 1024px) {
-            .layout-wrapper {
-                grid-template-columns: 1fr;
-                padding: 4rem 1.25rem 2rem;
-            }
-        }
-
-        /* Sticky Left Sidebar Profile (Compact to fit 100% in viewport) */
-        .sidebar {
-            position: sticky;
-            top: 2rem;
-            background: var(--surface);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--surface-border);
-            border-radius: 18px;
-            padding: 1.75rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.35);
-        }
-
-        @media (max-width: 1024px) {
-            .sidebar {
-                position: static;
-            }
-        }
-
-        .status-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            align-self: flex-start;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: var(--accent);
-            background: var(--accent-glow);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            padding: 0.25rem 0.65rem;
-            border-radius: 6px;
-        }
-
-        .status-dot {
-            width: 7px;
-            height: 7px;
-            background-color: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent);
-        }
-
-        .sidebar-header h1 {
-            font-size: 1.75rem;
+        .section-title {
+            font-size: 2rem;
             font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.15rem;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.35rem;
         }
 
-        .sidebar-header p {
-            font-size: 0.85rem;
-            color: var(--accent-secondary);
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 500;
-        }
-
-        .sidebar-bio {
-            font-size: 0.88rem;
+        .section-subtitle {
             color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
         }
 
-        .sidebar-bio strong {
+        .sub-heading {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* HERO SECTION */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (max-width: 920px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .hero-name {
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-name span {
+            color: var(--accent);
+        }
+
+        .hero-lead {
+            font-size: 1.08rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-lead strong {
             color: var(--text-main);
         }
 
-        /* CV Buttons placed right below bio so they never clip */
-        .sidebar-actions {
+        .hero-badges {
             display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.8rem;
         }
 
-        .action-btn {
-            display: flex;
+        .pill-badge {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 0.5rem;
-            width: 100%;
-            padding: 0.68rem 0.9rem;
-            border-radius: 10px;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            padding: 0.45rem 0.95rem;
+            border-radius: 999px;
             font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .pill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .pill-dot.cyan {
+            background: var(--accent-secondary);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.78rem 1.4rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
             font-weight: 700;
             text-decoration: none;
             transition: var(--transition);
-            font-family: 'JetBrains Mono', monospace;
         }
 
-        .action-btn.primary {
+        .btn-primary {
             background: var(--accent);
             color: #040812;
             border: 1px solid var(--accent);
         }
 
-        .action-btn.primary:hover {
+        .btn-primary:hover {
             filter: brightness(1.1);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 16px var(--accent-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--accent-soft);
         }
 
-        .action-btn.secondary {
-            background: var(--pill-bg);
+        .btn-secondary {
+            background: var(--surface);
             color: var(--text-main);
             border: 1px solid var(--surface-border);
         }
 
-        .action-btn.secondary:hover {
+        .btn-secondary:hover {
             border-color: var(--accent);
             color: var(--accent);
+            transform: translateY(-2px);
         }
 
-        .sidebar-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-            border-top: 1px solid var(--surface-border);
-            padding-top: 1rem;
-        }
-
-        .sidebar-nav a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.82rem;
-            font-weight: 500;
-            padding: 0.45rem 0.65rem;
-            border-radius: 8px;
-            transition: var(--transition);
-            border-left: 2px solid transparent;
-        }
-
-        .sidebar-nav a:hover {
-            color: var(--text-main);
-            background: var(--accent-glow);
-            border-left-color: var(--accent);
-        }
-
-        /* Right Content Area */
-        .content-feed {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .feed-section {
+        /* Hero Video Card */
+        .pitch-card {
             background: var(--surface);
-            backdrop-filter: blur(12px);
             border: 1px solid var(--surface-border);
-            border-radius: 18px;
-            padding: 2rem 2.25rem;
-            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.25);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
         }
 
-        .section-heading {
-            font-size: 1.3rem;
-            font-weight: 800;
-            letter-spacing: -0.01em;
-            margin-bottom: 0.25rem;
+        .pitch-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 0.6rem;
+            margin-bottom: 0.9rem;
         }
 
-        .section-heading .num {
-            color: var(--accent);
+        .pitch-header h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .pitch-tag {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-soft);
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-weight: 600;
         }
 
-        .section-desc {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Video Feature Box */
-        .video-box {
+        .video-container {
             width: 100%;
             border-radius: 12px;
             overflow: hidden;
@@ -302,258 +341,550 @@
             display: block;
         }
 
-        /* Modern Timeline */
-        .timeline-stream {
+        /* SKILLS GRID */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .skill-box {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .skill-box h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .skill-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .skill-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        .skill-list img {
+            width: 22px;
+            height: 22px;
+        }
+
+        .skill-bullet {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: inline-block;
+        }
+
+        /* CARDS GRID */
+        .cards-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cards-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 18px;
+            padding: 1.75rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .card-badge {
+            align-self: flex-start;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .card h4 {
+            font-size: 1.18rem;
+            font-weight: 700;
+        }
+
+        .card-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--accent-secondary);
+            margin-top: -0.35rem;
+        }
+
+        .card p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+        }
+
+        .card p strong {
+            color: var(--text-main);
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-top: auto;
+            padding-top: 0.75rem;
+        }
+
+        .tech-tag {
+            background: var(--tag-bg);
+            border: 1px solid var(--surface-border);
+            color: var(--text-muted);
+            font-size: 0.76rem;
+            font-weight: 600;
+            padding: 0.2rem 0.65rem;
+            border-radius: 999px;
+        }
+
+        /* TIMELINE */
+        .timeline {
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
 
-        .timeline-card {
-            background: var(--bg);
+        .timeline-item {
+            background: var(--surface);
             border: 1px solid var(--surface-border);
-            border-left: 3px solid var(--accent);
-            border-radius: 12px;
-            padding: 1.15rem 1.4rem;
-            transition: var(--transition);
-        }
-
-        .timeline-card:hover {
-            border-color: var(--accent);
-            transform: translateX(4px);
-        }
-
-        .timeline-card h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 0.2rem;
-        }
-
-        .timeline-card span {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* Grid Cards for Perspectives & Mobility */
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.15rem;
-        }
-
-        .mini-card {
-            background: var(--bg);
-            border: 1px solid var(--surface-border);
+            border-left: 4px solid var(--accent);
             border-radius: 14px;
-            padding: 1.4rem;
+            padding: 1.25rem 1.5rem;
+            box-shadow: var(--shadow);
             display: flex;
-            flex-direction: column;
-            gap: 0.65rem;
-            transition: var(--transition);
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .mini-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -10px var(--accent-glow);
-        }
-
-        .card-tag {
-            align-self: flex-start;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 0.2rem 0.55rem;
-            border-radius: 5px;
-            background: var(--accent-glow);
-            color: var(--accent);
-            border: 1px solid rgba(16, 185, 129, 0.25);
-        }
-
-        .mini-card h3 {
-            font-size: 1.02rem;
+        .timeline-item h4 {
+            font-size: 1.05rem;
             font-weight: 700;
         }
 
-        .mini-card .role-sub {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.76rem;
-            color: var(--accent-secondary);
-            margin-top: -0.35rem;
-        }
-
-        .mini-card p {
-            font-size: 0.85rem;
+        .timeline-item p {
+            font-size: 0.88rem;
             color: var(--text-muted);
+        }
+
+        .timeline-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* MOBILITY SPLIT */
+        .mobility-split {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 820px) {
+            .mobility-split {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .lang-item {
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--surface-border);
+        }
+
+        .lang-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .lang-item strong {
+            color: var(--text-main);
+            display: block;
+            font-size: 0.98rem;
+        }
+
+        .lang-item span {
+            color: var(--text-muted);
+            font-size: 0.88rem;
         }
 
         footer {
             text-align: center;
-            padding: 1.5rem;
+            padding: 2.5rem 1.5rem;
             color: var(--text-muted);
-            font-size: 0.8rem;
-            grid-column: 1 / -1;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--surface-border);
             font-family: 'JetBrains Mono', monospace;
         }
     </style>
 </head>
 <body>
 
-    <!-- Floating Top Bar Controls -->
-    <div class="top-bar">
-        <button class="control-btn" id="langToggle">FR</button>
-        <button class="control-btn" id="themeToggle">THEME</button>
-    </div>
+    <!-- Top Sticky Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#welcome" class="brand">
+                <span class="brand-dot"></span>
+                <span>Ismail SAIH</span>
+            </a>
 
-    <div class="layout-wrapper">
+            <ul class="nav-links">
+                <li><a href="#welcome" data-en="Welcome" data-fr="Accueil">Welcome</a></li>
+                <li><a href="#engineering" data-en="Engineering" data-fr="Ingénierie">Engineering</a></li>
+                <li><a href="#career" data-en="Career" data-fr="Carrière">Career</a></li>
+                <li><a href="#mobility" data-en="Mobility" data-fr="Mobilité">Mobility</a></li>
+                <li><a href="#engagement" data-en="Engagement" data-fr="Engagement">Engagement</a></li>
+                <li><a href="#activities" data-en="Activities" data-fr="Activités">Activities</a></li>
+            </ul>
 
-        <!-- Left Sticky Sidebar (Icon Removed, CV Buttons High & Visible) -->
-        <aside class="sidebar">
-            <div class="status-chip">
-                <span class="status-dot"></span>
-                <span data-en="SEC_TRACK // SN" data-fr="CYBER_TRACK // SN">SEC_TRACK // SN</span>
+            <div class="nav-controls">
+                <button class="ctrl-btn" id="langToggle">FR</button>
+                <button class="ctrl-btn" id="themeToggle">THEME</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. WELCOME & PITCH HERO -->
+    <section id="welcome" class="section-wrapper">
+        <div class="container hero-grid">
+            <div>
+                <h1 class="hero-name">Ismail<br><span>SAIH</span></h1>
+                <p class="hero-lead" data-en="Engineering student at <strong>ENSEEIHT</strong> in <strong>Digital Sciences (Sciences du Numérique)</strong>, combining a rigorous mathematical background from <strong>CPGE MP</strong> with a strong focus on <strong>cybersecurity, cryptography, and software systems</strong>." data-fr="Étudiant ingénieur à l'<strong>ENSEEIHT</strong> en <strong>Sciences du Numérique</strong>, alliant la rigueur mathématique d'une <strong>CPGE MP</strong> à une spécialisation orientée vers la <strong>cybersécurité, la cryptographie et les systèmes logiciels</strong>.">
+                    Engineering student at <strong>ENSEEIHT</strong> in <strong>Digital Sciences (Sciences du Numérique)</strong>, combining a rigorous mathematical background from <strong>CPGE MP</strong> with a strong focus on <strong>cybersecurity, cryptography, and software systems</strong>.
+                </p>
+
+                <div class="hero-badges">
+                    <div class="pill-badge">
+                        <span class="pill-dot"></span>
+                        <span data-en="Cybersecurity & Digital Sciences" data-fr="Cybersécurité & Sciences du Numérique">Cybersecurity & Digital Sciences</span>
+                    </div>
+                    <div class="pill-badge">
+                        <span class="pill-dot cyan"></span>
+                        <span>ENSEEIHT, Toulouse</span>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="cv-en.pdf" target="_blank" class="btn btn-primary" data-en="↓ Download CV (English)" data-fr="↓ Télécharger CV (Anglais)">↓ Download CV (English)</a>
+                    <a href="cv-fr.pdf" target="_blank" class="btn btn-secondary" data-en="↓ Download CV (French)" data-fr="↓ Télécharger CV (Français)">↓ Download CV (French)</a>
+                </div>
             </div>
 
-            <div class="sidebar-header">
-                <h1>Ismail SAIH</h1>
-                <p data-en="Engineering Student @ ENSEEIHT" data-fr="Étudiant Ingénieur @ ENSEEIHT">Engineering Student @ ENSEEIHT</p>
-            </div>
-
-            <p class="sidebar-bio" data-en="First-year student in <strong>Sciences du Numérique</strong> following an intensive <strong>CPGE MP</strong> track in Morocco. Focused on <strong>cybersecurity, network architecture, cryptography</strong>, and <strong>low-level systems</strong>." data-fr="Étudiant de 1re année en <strong>Sciences du Numérique</strong> après une <strong>CPGE MP</strong> au Maroc. Orienté vers la <strong>cybersécurité, l'architecture réseau, la cryptographie</strong> et les <strong>systèmes bas niveau</strong>.">
-                First-year student in <strong>Sciences du Numérique</strong> following an intensive <strong>CPGE MP</strong> track in Morocco. Focused on <strong>cybersecurity, network architecture, cryptography</strong>, and <strong>low-level systems</strong>.
-            </p>
-
-            <!-- CV Downloads immediately visible without scrolling -->
-            <div class="sidebar-actions">
-                <a href="cv-en.pdf" target="_blank" class="action-btn primary" data-en="↓ Download Resume (EN)" data-fr="↓ Télécharger CV (EN)">↓ Download Resume (EN)</a>
-                <a href="cv-fr.pdf" target="_blank" class="action-btn secondary" data-en="↓ Télécharger CV (FR)" data-fr="↓ Télécharger CV (FR)">↓ Télécharger CV (FR)</a>
-            </div>
-
-            <nav class="sidebar-nav">
-                <a href="#pitch" data-en="01 / Elevator Pitch" data-fr="01 / Pitch Vidéo">01 / Elevator Pitch</a>
-                <a href="#pathway" data-en="02 / Education" data-fr="02 / Formation">02 / Education</a>
-                <a href="#perspectives" data-en="03 / Cyber Role Models" data-fr="03 / Modèles Cyber">03 / Cyber Role Models</a>
-                <a href="#mobility" data-en="04 / International Mobility" data-fr="04 / Mobilité">04 / International Mobility</a>
-            </nav>
-        </aside>
-
-        <!-- Right Content Feed -->
-        <div class="content-feed">
-
-            <!-- SECTION 01: PITCH -->
-            <section id="pitch" class="feed-section">
-                <h2 class="section-heading">
-                    <span class="num">01.</span>
-                    <span data-en="Elevator pitch" data-fr="Présentation vidéo">Elevator pitch</span>
-                </h2>
-                <p class="section-desc" data-en="Watch my pitch below:" data-fr="Découvrez ma présentation ci-dessous :">Watch my pitch below:</p>
-                <div class="video-box">
+            <!-- Elevator Pitch Video -->
+            <div class="pitch-card">
+                <div class="pitch-header">
+                    <h2 data-en="Elevator Pitch" data-fr="Présentation Vidéo">Elevator Pitch</h2>
+                    <span class="pitch-tag" data-en="Watch below" data-fr="Vidéo EN">Watch below</span>
+                </div>
+                <div class="video-container">
                     <video controls preload="metadata">
                         <source src="pitch.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
-            </section>
-
-            <!-- SECTION 02: EDUCATION -->
-            <section id="pathway" class="feed-section">
-                <h2 class="section-heading">
-                    <span class="num">02.</span>
-                    <span data-en="Academic pathway" data-fr="Parcours académique">Academic pathway</span>
-                </h2>
-                <p class="section-desc" data-en="Foundational training in mathematics, algorithms, and computer systems" data-fr="Formation en mathématiques, algorithmique et systèmes informatiques">Foundational training in mathematics, algorithms, and computer systems</p>
-
-                <div class="timeline-stream">
-                    <div class="timeline-card">
-                        <h3 data-en="ENSEEIHT — Sciences du Numérique (SN)" data-fr="ENSEEIHT — Sciences du Numérique (SN)">ENSEEIHT — Sciences du Numérique (SN)</h3>
-                        <span data-en="2026–2029 · Engineering Degree · Systems, Networks & Programming (C, Ada, Python) · Toulouse" data-fr="2026–2029 · Cycle Ingénieur · Systèmes, Réseaux & Programmation (C, Ada, Python) · Toulouse">2026–2029 · Engineering Degree · Systems, Networks & Programming (C, Ada, Python) · Toulouse</span>
-                    </div>
-                    <div class="timeline-card">
-                        <h3 data-en="CPGE MP (Mathematics & Physics)" data-fr="CPGE MP (Mathématiques et Physique)">CPGE MP (Mathematics & Physics)</h3>
-                        <span data-en="2024–2026 · Intensive Preparatory Classes · Advanced Algebra, Modular Arithmetic & Physics · Morocco" data-fr="2024–2026 · Classes Préparatoires · Algèbre avancée, Arithmétique & Physique · Maroc">2024–2026 · Intensive Preparatory Classes · Advanced Algebra, Modular Arithmetic & Physics · Morocco</span>
-                    </div>
-                    <div class="timeline-card">
-                        <h3 data-en="Baccalauréat Sciences Mathématiques" data-fr="Baccalauréat Sciences Mathématiques">Baccalauréat Sciences Mathématiques</h3>
-                        <span data-en="2024 · Honors (Mention Bien) · Morocco" data-fr="2024 · Mention Bien · Maroc">2024 · Honors (Mention Bien) · Morocco</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECTION 03: CYBERSECURITY ROLE MODELS -->
-            <section id="perspectives" class="feed-section">
-                <h2 class="section-heading">
-                    <span class="num">03.</span>
-                    <span data-en="Cybersecurity role models" data-fr="Modèles en cybersécurité">Cybersecurity role models</span>
-                </h2>
-                <p class="section-desc" data-en="Three security engineering trajectories shaping my career goals" data-fr="Trois trajectoires d'experts en sécurité qui orientent mon projet professionnel">Three security engineering trajectories shaping my career goals</p>
-
-                <div class="grid-cards">
-                    <div class="mini-card">
-                        <span class="card-tag">CRYPTO & R&D</span>
-                        <h3 data-en="Applied Cryptographer & Security Researcher" data-fr="Cryptographe Appliqué & Chercheur Sécurité">Applied Cryptographer & Security Researcher</h3>
-                        <div class="role-sub" data-en="e.g., Thales SIX / PQShield / ANSSI" data-fr="ex. Thales SIX / PQShield / ANSSI">e.g., Thales SIX / PQShield / ANSSI</div>
-                        <p data-en="Bridges pure mathematics (number theory, modular arithmetic, lattice-based algorithms) with post-quantum encryption protocols and secure communications." data-fr="Allie les mathématiques pures (théorie des nombres, arithmétique modulaire) à la conception de protocoles de chiffrement post-quantique.">Bridges pure mathematics (number theory, modular arithmetic, lattice-based algorithms) with post-quantum encryption protocols and secure communications.</p>
-                    </div>
-
-                    <div class="mini-card">
-                        <span class="card-tag">OFFENSIVE SEC</span>
-                        <h3 data-en="Vulnerability Researcher & Red Team Engineer" data-fr="Chercheur en Vulnérabilités & Red Team">Vulnerability Researcher & Red Team Engineer</h3>
-                        <div class="role-sub" data-en="e.g., Synacktiv / Quarkslab / Project Zero" data-fr="ex. Synacktiv / Quarkslab / Project Zero">e.g., Synacktiv / Quarkslab / Project Zero</div>
-                        <p data-en="Audits low-level C/Ada codebases, embedded firmware, and OS kernels through reverse engineering, memory corruption analysis, and penetration testing." data-fr="Audite les systèmes bas niveau (C/Ada), les firmwares embarqués et les noyaux OS via la rétro-ingénierie et les tests d'intrusion.">Audits low-level C/Ada codebases, embedded firmware, and OS kernels through reverse engineering, memory corruption analysis, and penetration testing.</p>
-                    </div>
-
-                    <div class="mini-card">
-                        <span class="card-tag">NETSEC & CLOUD</span>
-                        <h3 data-en="Zero-Trust & Network Security Architect" data-fr="Architecte Sécurité Réseaux & Cloud">Zero-Trust & Network Security Architect</h3>
-                        <div class="role-sub" data-en="e.g., Airbus Protect / Cloudflare / Sopra Steria" data-fr="ex. Airbus Protect / Cloudflare / Sopra Steria">e.g., Airbus Protect / Cloudflare / Sopra Steria</div>
-                        <p data-en="Designs resilient network topologies, intrusion detection systems (IDS), and hardened critical infrastructure for aerospace and enterprise ecosystems." data-fr="Conçoit des topologies réseau résilientes, des systèmes de détection d'intrusion et protège les infrastructures critiques.">Designs resilient network topologies, intrusion detection systems (IDS), and hardened critical infrastructure for aerospace and enterprise ecosystems.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECTION 04: ALIGNED INTERNATIONAL MOBILITY -->
-            <section id="mobility" class="feed-section">
-                <h2 class="section-heading">
-                    <span class="num">04.</span>
-                    <span data-en="International mobility" data-fr="Mobilité internationale">International mobility</span>
-                </h2>
-                <p class="section-desc" data-en="Academic exchanges and research destinations aligned with each cybersecurity track" data-fr="Échanges académiques et destinations alignés avec ces trois spécialisations en cybersécurité">Academic exchanges and research destinations aligned with each cybersecurity track</p>
-
-                <div class="grid-cards">
-                    <div class="mini-card">
-                        <span class="card-tag" data-en="Track 01 // Switzerland or Sweden" data-fr="Voie 01 // Suisse ou Suède">Track 01 // Switzerland or Sweden</span>
-                        <h3 data-en="EPFL / ETH Zürich or KTH Stockholm" data-fr="EPFL / ETH Zürich ou KTH Stockholm">EPFL / ETH Zürich or KTH Stockholm</h3>
-                        <div class="role-sub" data-en="Aligned with Applied Cryptography" data-fr="Aligné avec la Cryptographie Appliquée">Aligned with Applied Cryptography</div>
-                        <p data-en="S9 academic exchange targeting world-leading European laboratories in cryptographic protocols, formal verification, and information security." data-fr="Échange académique S9 ciblant des laboratoires européens de pointe en protocoles cryptographiques et vérification formelle.">S9 academic exchange targeting world-leading European laboratories in cryptographic protocols, formal verification, and information security.</p>
-                    </div>
-
-                    <div class="mini-card">
-                        <span class="card-tag" data-en="Track 02 // Germany or Netherlands" data-fr="Voie 02 // Allemagne ou Pays-Bas">Track 02 // Germany or Netherlands</span>
-                        <h3 data-en="TU Munich / TU Delft (Erasmus+)" data-fr="TU Munich / TU Delft (Erasmus+)">TU Munich / TU Delft (Erasmus+)</h3>
-                        <div class="role-sub" data-en="Aligned with Systems & Offensive Security" data-fr="Aligné avec la Sécurité Systèmes & Offensive">Aligned with Systems & Offensive Security</div>
-                        <p data-en="Semester exchange focusing on binary analysis, hardware-software security, and operating system hardening." data-fr="Semestre d'échange axé sur l'analyse binaire, la sécurité matérielle/logicielle et le durcissement des systèmes d'exploitation.">Semester exchange focusing on binary analysis, hardware-software security, and operating system hardening.</p>
-                    </div>
-
-                    <div class="mini-card">
-                        <span class="card-tag" data-en="Track 03 // Canada" data-fr="Voie 03 // Canada">Track 03 // Canada</span>
-                        <h3 data-en="Polytechnique Montréal / Concordia" data-fr="Polytechnique Montréal / Concordia">Polytechnique Montréal / Concordia</h3>
-                        <div class="role-sub" data-en="Aligned with Network & Cloud Defense" data-fr="Aligné avec l'Architecture & Défense Réseau">Aligned with Network & Cloud Defense</div>
-                        <p data-en="Double degree or international research internship in cyber-resilience, secure cloud infrastructure, and AI-driven threat detection." data-fr="Double diplôme ou stage de recherche en cyber-résilience, sécurité cloud et détection de menaces par IA.">Double degree or international research internship in cyber-resilience, secure cloud infrastructure, and AI-driven threat detection.</p>
-                    </div>
-                </div>
-            </section>
-
-            <footer>
-                <p>© 2026 Ismail SAIH // SEC_PORTFOLIO</p>
-            </footer>
+            </div>
         </div>
+    </section>
 
-    </div>
+    <!-- 2. ENGINEERING (SKILLS & PROJECTS) -->
+    <section id="engineering" class="section-wrapper alt">
+        <div class="container">
+            <h2 class="section-title" data-en="Engineering" data-fr="Ingénierie">Engineering</h2>
+            <p class="section-subtitle" data-en="Technical skills and projects from my Digital Sciences curriculum." data-fr="Compétences techniques et projets issus de mon cursus en Sciences du Numérique.">Technical skills and projects from my Digital Sciences curriculum.</p>
+
+            <div class="skills-grid">
+                <div class="skill-box">
+                    <h4 data-en="Languages" data-fr="Langages">Languages</h4>
+                    <ul class="skill-list">
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><span>Python</span></li>
+                        <li><span class="skill-bullet"></span><span>Ada</span></li>
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL"><span>SQL & Relational Algebra</span></li>
+                    </ul>
+                </div>
+
+                <div class="skill-box">
+                    <h4 data-en="Scientific Computing" data-fr="Calcul Scientifique">Scientific Computing</h4>
+                    <ul class="skill-list">
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy"><span>NumPy & SymPy</span></li>
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas"><span>Pandas & Matplotlib</span></li>
+                        <li><span class="skill-bullet"></span><span data-en="Modular Arithmetic & Crypto" data-fr="Arithmétique Modulaire & Crypto">Modular Arithmetic & Crypto</span></li>
+                        <li><span class="skill-bullet"></span><span data-en="Algorithmic Complexity" data-fr="Complexité Algorithmique">Algorithmic Complexity</span></li>
+                    </ul>
+                </div>
+
+                <div class="skill-box">
+                    <h4 data-en="Tools & Systems" data-fr="Outils & Systèmes">Tools & Systems</h4>
+                    <ul class="skill-list">
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"><span>Linux & Bash</span></li>
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"><span>Git & GitHub</span></li>
+                        <li><span class="skill-bullet"></span><span>Cisco Packet Tracer</span></li>
+                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/latex/latex-original.svg" alt="LaTeX" style="filter: invert(0.5);"><span>LaTeX</span></li>
+                    </ul>
+                </div>
+
+                <div class="skill-box">
+                    <h4 data-en="Soft Skills" data-fr="Savoir-être">Soft Skills</h4>
+                    <ul class="skill-list">
+                        <li><span class="skill-bullet"></span><span data-en="Analytical Rigor" data-fr="Rigueur Analytique">Analytical Rigor</span></li>
+                        <li><span class="skill-bullet"></span><span data-en="Problem Solving" data-fr="Résolution de Problèmes">Problem Solving</span></li>
+                        <li><span class="skill-bullet"></span><span data-en="Teamwork" data-fr="Travail d'Équipe">Teamwork</span></li>
+                        <li><span class="skill-bullet"></span><span data-en="Pedagogy & Mentoring" data-fr="Pédagogie & Mentorat">Pedagogy & Mentoring</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="sub-heading" data-en="Selected Project" data-fr="Projet Réalisé">Selected Project</h3>
+            <div class="cards-grid-3">
+                <div class="card" style="grid-column: 1 / -1; max-width: 700px;">
+                    <span class="card-badge" data-en="CPGE Research Project (TIPE)" data-fr="Projet de Recherche CPGE (TIPE)">CPGE Research Project (TIPE)</span>
+                    <h4 data-en="Pollard's Rho Algorithm in Modular Arithmetic" data-fr="Algorithme Rho de Pollard en Arithmétique Modulaire">Pollard's Rho Algorithm in Modular Arithmetic</h4>
+                    <p data-en="Investigated cycle-detection algorithms in modular arithmetic, focusing on Pollard's rho algorithm for integer factorization and its cryptographic implications, implemented and simulated in Python." data-fr="Étude des algorithmes de détection de cycles en arithmétique modulaire, axée sur l'algorithme rho de Pollard pour la factorisation d'entiers et ses applications cryptographiques, implémenté et simulé en Python.">Investigated cycle-detection algorithms in modular arithmetic, focusing on Pollard's rho algorithm for integer factorization and its cryptographic implications, implemented and simulated in Python.</p>
+                    
+                    <div style="margin-top: 0.5rem;">
+                        <a href="https://tipeshare.com/biblio/tipe/6ab597cec2e8125e528cb44b?code=tstkSTfw9_nozp8UXWxCww" target="_blank" class="btn btn-secondary" style="font-size: 0.82rem; padding: 0.4rem 0.85rem;" data-en="View TIPE Project →" data-fr="Voir le projet TIPE →">View TIPE Project →</a>
+                    </div>
+
+                    <div class="tag-row">
+                        <span class="tech-tag">Cryptography</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Modular Arithmetic</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. CAREER -->
+    <section id="career" class="section-wrapper">
+        <div class="container">
+            <h2 class="section-title" data-en="Career" data-fr="Carrière">Career</h2>
+            <p class="section-subtitle" data-en="Professional documents, academic pathway, and cybersecurity role models." data-fr="Documents professionnels, parcours académique et rôles modèles en cybersécurité.">Professional documents, academic pathway, and cybersecurity role models.</p>
+
+            <div class="cta-buttons" style="margin-bottom: 2.5rem;">
+                <a href="cv-en.pdf" target="_blank" class="btn btn-primary" data-en="↓ Download CV (English)" data-fr="↓ Télécharger CV (Anglais)">↓ Download CV (English)</a>
+                <a href="cv-fr.pdf" target="_blank" class="btn btn-secondary" data-en="↓ Download CV (French)" data-fr="↓ Télécharger CV (Français)">↓ Download CV (French)</a>
+            </div>
+
+            <h3 class="sub-heading" data-en="Academic Pathway" data-fr="Parcours Académique">Academic Pathway</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div>
+                        <h4 data-en="ENSEEIHT — Digital Sciences (Sciences du Numérique)" data-fr="ENSEEIHT — Sciences du Numérique (SN)">ENSEEIHT — Digital Sciences (Sciences du Numérique)</h4>
+                        <p data-en="First-year engineering student · Toulouse, France" data-fr="Étudiant ingénieur de première année · Toulouse, France">First-year engineering student · Toulouse, France</p>
+                    </div>
+                    <span class="timeline-date">2026 – 2029</span>
+                </div>
+
+                <div class="timeline-item">
+                    <div>
+                        <h4 data-en="CPGE MP (Mathematics & Physics)" data-fr="CPGE MP (Mathématiques et Physique)">CPGE MP (Mathematics & Physics)</h4>
+                        <p data-en="Two-year intensive preparatory classes for competitive entrance exams · Morocco" data-fr="Classes préparatoires aux grandes écoles, filière MP · Maroc">Two-year intensive preparatory classes for competitive entrance exams · Morocco</p>
+                    </div>
+                    <span class="timeline-date">2024 – 2026</span>
+                </div>
+
+                <div class="timeline-item">
+                    <div>
+                        <h4 data-en="Baccalauréat Sciences Mathématiques" data-fr="Baccalauréat Sciences Mathématiques">Baccalauréat Sciences Mathématiques</h4>
+                        <p data-en="Obtained with Honors (Mention Bien) · Morocco" data-fr="Obtenu avec Mention Bien · Maroc">Obtained with Honors (Mention Bien) · Morocco</p>
+                    </div>
+                    <span class="timeline-date">2024</span>
+                </div>
+            </div>
+
+            <h3 class="sub-heading" data-en="Cybersecurity Role Models" data-fr="Rôles Modèles en Cybersécurité">Cybersecurity Role Models</h3>
+            <div class="cards-grid-3">
+                <div class="card">
+                    <span class="card-badge" style="color:var(--accent); font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:700;">ROLE MODEL 01 // CRYPTOGRAPHY</span>
+                    <h4 data-en="Oded Regev" data-fr="Oded Regev">Oded Regev</h4>
+                    <div class="card-meta">Mathematician & Computer Scientist (NYU)</div>
+                    <p data-en="Famous for inventing lattice-based cryptography (Learning with Errors), establishing the mathematical foundation powering post-quantum encryption standards globally." data-fr="Célèbre pour avoir inventé la cryptographie sur réseaux euclidiens (Learning with Errors), établissant les fondements mathématiques des standards de chiffrement post-quantique.">Famous for inventing lattice-based cryptography (Learning with Errors), establishing the mathematical foundation powering post-quantum encryption standards globally.</p>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge" style="color:var(--accent); font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:700;">ROLE MODEL 02 // OFFENSIVE SECURITY</span>
+                    <h4 data-en="Tavis Ormandy" data-fr="Tavis Ormandy">Tavis Ormandy</h4>
+                    <div class="card-meta">Security Researcher (Google Project Zero)</div>
+                    <p data-en="Internationally renowned for discovering critical zero-day vulnerabilities in core software and operating systems through deep reverse engineering and low-level code analysis." data-fr="Reconnu internationalement pour la découverte de vulnérabilités zero-day critiques dans les logiciels et systèmes d'exploitation via la rétro-ingénierie et l'analyse de code bas niveau.">Internationally renowned for discovering critical zero-day vulnerabilities in core software and operating systems through deep reverse engineering and low-level code analysis.</p>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge" style="color:var(--accent); font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:700;">ROLE MODEL 03 // ARCHITECTURE & NETWORKS</span>
+                    <h4 data-en="Bruce Schneier" data-fr="Bruce Schneier">Bruce Schneier</h4>
+                    <div class="card-meta">Security Technologist & Cryptographer</div>
+                    <p data-en="Internationally acclaimed author and security expert specializing in network security, trust models, and the resilient architectural design of secure cryptographic systems." data-fr="Expert en sécurité et auteur reconnu, spécialisé dans la sécurité des réseaux, les modèles de confiance et la conception architecturale de systèmes cryptographiques sécurisés.">Internationally acclaimed author and security expert specializing in network security, trust models, and the resilient architectural design of secure cryptographic systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. MOBILITY -->
+    <section id="mobility" class="section-wrapper alt">
+        <div class="container">
+            <h2 class="section-title" data-en="Mobility" data-fr="Mobilité">Mobility</h2>
+            <p class="section-subtitle" data-en="Language skills and international aspirations." data-fr="Compétences linguistiques et ambitions internationales.">Language skills and international aspirations.</p>
+
+            <div class="mobility-split">
+                <!-- Languages Card -->
+                <div class="card">
+                    <h4 data-en="🌐 Languages" data-fr="🌐 Langues">🌐 Languages</h4>
+                    <div class="lang-item">
+                        <strong data-en="English: Fluent" data-fr="Anglais : Courant (Fluent)">English: Fluent</strong>
+                        <span data-en="Full academic & professional proficiency — ready for international mobility." data-fr="Maîtrise académique et professionnelle complète — prêt pour la mobilité.">Full academic & professional proficiency — ready for international mobility.</span>
+                    </div>
+                    <div class="lang-item">
+                        <strong data-en="French: B2 Level" data-fr="Français : Niveau B2">French: B2 Level</strong>
+                        <span data-en="Solid independent proficiency in academic and daily engineering contexts." data-fr="Maîtrise opérationnelle dans un cadre académique et technique.">Solid independent proficiency in academic and daily engineering contexts.</span>
+                    </div>
+                    <div class="lang-item">
+                        <strong data-en="Arabic: Mother Tongue" data-fr="Arabe : Langue Maternelle">Arabic: Mother Tongue</strong>
+                        <span data-en="Native proficiency (spoken, written, and classical composition)." data-fr="Maîtrise native (orale, écrite et littéraire).">Native proficiency (spoken, written, and classical composition).</span>
+                    </div>
+                </div>
+
+                <!-- Mobility Plans Narrative Card -->
+                <div class="card">
+                    <h4 data-en="✈️ Mobility Plans" data-fr="✈️ Projet de Mobilité">✈️ Mobility Plans</h4>
+                    <p data-en="My primary objective is to complete an academic exchange semester or international internship abroad during my third year (S9) to deepen my expertise in <strong>cybersecurity, cryptography, and resilient computer systems</strong>. Having already experienced an international academic transition from Morocco to France, I am eager to immerse myself in a leading global research ecosystem." data-fr="Mon objectif principal est d'effectuer un semestre d'échange académique ou un stage international à l'étranger en 3e année (S9) afin d'approfondir mon expertise en <strong>cybersécurité, cryptographie et sécurité des systèmes</strong>. Après une première mobilité du Maroc vers la France, je souhaite m'immerger dans un écosystème de recherche international de premier plan.">
+                        My primary objective is to complete an academic exchange semester or international internship abroad during my third year (S9) to deepen my expertise in <strong>cybersecurity, cryptography, and resilient computer systems</strong>. Having already experienced an international academic transition from Morocco to France, I am eager to immerse myself in a leading global research ecosystem.
+                    </p>
+                    <p data-en="<strong>Target Opportunities:</strong> I am focusing on international research labs and academic opportunities in Europe and North America recognized for cutting-edge work in information security, applied cryptography, and network defense. Being fluent in English allows me to seamlessly integrate into English-taught graduate programs and global R&D teams." data-fr="<strong>Opportunités ciblées :</strong> Je vise des laboratoires de recherche internationaux et des opportunités académiques en Europe et en Amérique du Nord reconnus pour leurs travaux en sécurité de l'information et cryptographie. Ma maîtrise courante de l'anglais me permet d'intégrer directement ces cursus internationaux.">
+                        <strong>Target Opportunities:</strong> I am focusing on international research labs and academic opportunities in Europe and North America recognized for cutting-edge work in information security, applied cryptography, and network defense. Being fluent in English allows me to seamlessly integrate into English-taught graduate programs and global R&D teams.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Generalized Opportunities Cards (No textbook mapping text) -->
+            <div class="cards-grid-3">
+                <div class="card">
+                    <span class="card-badge" data-en="Opportunity Track 01" data-fr="Voie 01">Opportunity Track 01</span>
+                    <h4 data-en="Post-Quantum Cryptography Research Labs" data-fr="Laboratoires de Recherche en Cryptographie Post-Quantique">Post-Quantum Cryptography Research Labs</h4>
+                    <p data-en="Academic research exchanges or internships focused on lattice-based cryptography, mathematical security proofs, and next-generation encryption standards." data-fr="Échanges de recherche académique ou stages axés sur la cryptographie sur réseaux euclidiens et les standards de chiffrement de nouvelle génération.">Academic research exchanges or internships focused on lattice-based cryptography, mathematical security proofs, and next-generation encryption standards.</p>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge" data-en="Opportunity Track 02" data-fr="Voie 02">Opportunity Track 02</span>
+                    <h4 data-en="Offensive Security & Binary Analysis Teams" data-fr="Équipes de Sécurité Offensive & Analyse Binaire">Offensive Security & Binary Analysis Teams</h4>
+                    <p data-en="International security audit internships and vulnerability research groups specializing in reverse engineering, binary exploitation, and kernel security." data-fr="Stages internationaux en audit de sécurité et groupes de recherche en vulnérabilités spécialisés en rétro-ingénierie et sécurité des noyaux.">International security audit internships and vulnerability research groups specializing in reverse engineering, binary exploitation, and kernel security.</p>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge" data-en="Opportunity Track 03" data-fr="Voie 03">Opportunity Track 03</span>
+                    <h4 data-en="Critical Infrastructure & Network Defense" data-fr="Infrastructures Critiques & Défense Réseau">Critical Infrastructure & Network Defense</h4>
+                    <p data-en="Global engineering programs and enterprise security groups working on zero-trust architectures, intrusion detection, and large-scale network resilience." data-fr="Programmes d'ingénierie mondiaux et groupes de sécurité d'entreprise travaillant sur les architectures zero-trust et la résilience des réseaux.">Global engineering programs and enterprise security groups working on zero-trust architectures, intrusion detection, and large-scale network resilience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ENGAGEMENT -->
+    <section id="engagement" class="section-wrapper">
+        <div class="container">
+            <h2 class="section-title" data-en="Engagement" data-fr="Engagement">Engagement</h2>
+            <p class="section-subtitle" data-en="Civic awareness, sustainability, and community involvement." data-fr="Engagement citoyen, transition écologique et implication étudiante.">Civic awareness, sustainability, and community involvement.</p>
+
+            <div class="cards-grid-2">
+                <div class="card">
+                    <span class="card-badge" data-en="Climate Awareness" data-fr="Transition Écologique">Climate Awareness</span>
+                    <h4 data-en="Climate Fresk (La Fresque du Climat)" data-fr="La Fresque du Climat">Climate Fresk (La Fresque du Climat)</h4>
+                    <p data-en="During my first year at ENSEEIHT, I took part in a collaborative 'Climate Fresk' workshop alongside fellow engineering students. Mapping the cause-and-effect mechanisms of climate disruption reinforced my awareness of the environmental challenges we must address through responsible digital engineering." data-fr="Dès ma première année à l'ENSEEIHT, j'ai participé à l'atelier collaboratif de « La Fresque du Climat » avec d'autres étudiants ingénieurs. Ce travail collectif sur les causes et conséquences du dérèglement climatique a renforcé ma prise de conscience des enjeux environnementaux liés à notre futur métier d'ingénieur.">During my first year at ENSEEIHT, I took part in a collaborative 'Climate Fresk' workshop alongside fellow engineering students. Mapping the cause-and-effect mechanisms of climate disruption reinforced my awareness of the environmental challenges we must address through responsible digital engineering.</p>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge" data-en="Ethics & Inclusion" data-fr="Éthique & Inclusion">Ethics & Inclusion</span>
+                    <h4 data-en="The Trial of King Kong (Le Procès de King Kong)" data-fr="Le Procès de King Kong">The Trial of King Kong (Le Procès de King Kong)</h4>
+                    <p data-en="As part of my first-year training at ENSEEIHT, I attended and actively engaged in the interactive theater production 'The Trial of King Kong,' which examines gender-based and sexual violence (VSS) and raises critical awareness about respect, consent, and bystander responsibility in student and professional environments." data-fr="Au cours de ma première année à l'ENSEEIHT, j'ai assisté et participé à la pièce de théâtre interactive « Le Procès de King Kong », dédiée à la lutte contre les violences sexistes et sexuelles (VSS) et à la responsabilisation collective au sein des environnements étudiants et professionnels.">As part of my first-year training at ENSEEIHT, I attended and actively engaged in the interactive theater production 'The Trial of King Kong,' which examines gender-based and sexual violence (VSS) and raises critical awareness about respect, consent, and bystander responsibility in student and professional environments.</p>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge" data-en="Scientific Transition" data-fr="Prospective Scientifique">Scientific Transition</span>
+                    <h4 data-en="'Futur Proche' Festival" data-fr="Festival « Futur Proche »">'Futur Proche' Festival</h4>
+                    <p data-en="Organized across ENSEEIHT and Toulouse universities, participating in the 'Futur Proche' festival allowed me to attend conferences, workshops, and discussions exploring ecological transition through a scientific lens—evaluating both existing technologies and emerging sustainable innovations." data-fr="Organisé par l'ENSEEIHT et les établissements universitaires toulousains, le festival « Futur Proche » m'a permis d'assister à des conférences et ateliers abordant les défis climatiques et sociétaux sous un angle scientifique et technologique.">Organized across ENSEEIHT and Toulouse universities, participating in the 'Futur Proche' festival allowed me to attend conferences, workshops, and discussions exploring ecological transition through a scientific lens—evaluating both existing technologies and emerging sustainable innovations.</p>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge" data-en="Academic Mentoring" data-fr="Pédagogie & Partage">Academic Mentoring</span>
+                    <h4 data-en="Mathematics Tutoring" data-fr="Tutorat en Mathématiques">Mathematics Tutoring</h4>
+                    <p data-en="Providing private mathematics tutoring for high school and preparatory class (CPGE) students, helping learners build methodological rigor, problem-solving confidence, and structured analytical thinking." data-fr="Accompagnement et cours particuliers en mathématiques pour des élèves de lycée et de classes préparatoires (CPGE), visant à transmettre des méthodes de travail rigoureuses et à renforcer leur autonomie.">Providing private mathematics tutoring for high school and preparatory class (CPGE) students, helping learners build methodological rigor, problem-solving confidence, and structured analytical thinking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. ACTIVITIES -->
+    <section id="activities" class="section-wrapper alt">
+        <div class="container">
+            <h2 class="section-title" data-en="Activities" data-fr="Activités">Activities</h2>
+            <p class="section-subtitle" data-en="Passions and interests outside of engineering." data-fr="Centres d'intérêt et passions en dehors de l'ingénierie.">Passions and interests outside of engineering.</p>
+
+            <div class="cards-grid-3">
+                <div class="card">
+                    <span class="card-badge" data-en="Strategy" data-fr="Stratégie">Strategy</span>
+                    <h4 data-en="Chess & Draughts" data-fr="Échecs & Jeu de Dames">Chess & Draughts</h4>
+                    <p data-en="Regular player of chess and online draughts variants, cultivating pattern recognition, tactical calculation, and decision-making under time pressure." data-fr="Pratique régulière des échecs et du jeu de dames en ligne, développant l'anticipation tactique, le calcul et la prise de décision sous contrainte de temps.">Regular player of chess and online draughts variants, cultivating pattern recognition, tactical calculation, and decision-making under time pressure.</p>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge" data-en="Sports" data-fr="Sport">Sports</span>
+                    <h4 data-en="Football" data-fr="Football">Football</h4>
+                    <p data-en="Passionate follower and player of football, appreciating team spirit, collective tactics, and European competitions." data-fr="Passionné par le football, tant pour l'esprit d'équipe sur le terrain que pour l'analyse tactique des grandes compétitions européennes.">Passionate follower and player of football, appreciating team spirit, collective tactics, and European competitions.</p>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge" data-en="Culture" data-fr="Culture">Culture</span>
+                    <h4 data-en="Literature & Classical Poetry" data-fr="Littérature & Poésie Classique">Literature & Classical Poetry</h4>
+                    <p data-en="Strong interest in philosophical works and composing classical Arabic poetry, alongside listening to romantic piano compositions." data-fr="Intérêt marqué pour la littérature philosophique, l'écriture de poésie arabe classique et la musique pour piano.">Strong interest in philosophical works and composing classical Arabic poetry, alongside listening to romantic piano compositions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Ismail SAIH — ENSEEIHT Digital Sciences e-Portfolio</p>
+    </footer>
 
     <script>
-        // Dark / Light Theme Toggle
+        // Theme Toggle (Dark / Light)
         const themeToggle = document.getElementById('themeToggle');
         const htmlEl = document.documentElement;
 
@@ -563,7 +894,7 @@
             htmlEl.setAttribute('data-theme', next);
         });
 
-        // EN / FR Language Switcher
+        // Language Toggle (EN / FR)
         const langToggle = document.getElementById('langToggle');
         let currentLang = 'en';
 
